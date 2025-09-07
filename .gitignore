@@ -1,0 +1,7 @@
+/.quarto/
+/data-raw/
+
+.RData
+.Rhistory
+.Rproj.user
+.Ruserdata

@@ -1,0 +1,25 @@
+; patches-own [
+;   tmin
+;   tmax
+;   prec
+;   latitude
+;   longitude
+; ]
+
+to setup-patches
+  foreach (patch-coordinates) [
+    #i -> ask patch (first #i) (last #i) [
+      ls:let #i #i
+      set tmin [[value] of patch (first #i) (last #i)] ls:of tmin-ls-model
+      set tmax [[value] of patch (first #i) (last #i)] ls:of tmax-ls-model
+      set prec [[value] of patch (first #i) (last #i)] ls:of prec-ls-model
+
+      set latitude mean (
+        [[latitude] of patch (first #i) (last #i)] ls:of tmin-ls-model
+      )
+      set longitude mean (
+        [[longitude] of patch (first #i) (last #i)] ls:of tmin-ls-model
+      )
+    ]
+  ]
+end

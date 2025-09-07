@@ -1,0 +1,5 @@
+to-report combine [#list-1 #list-2]
+  report (
+    reduce sentence (map [ i -> map [ j -> list i j ] #list-2 ] #list-1)
+  )
+end

@@ -1,0 +1,51 @@
+; extensions [ls]
+
+; globals [
+;   tmax-ls-model
+;   tmin-ls-model
+;   prec-ls-model
+; ]
+
+to setup-logoclim
+  let logoclim-path "../logoclim/nlogox/logoclim.nlogox"
+  let data-path "../../data/"
+
+  let data-series "Historical monthly weather data"
+  let data-resolution "10 minutes (~340 km2 at the equator)"
+  let start-month "January"
+  let start-year 1951
+
+  ls:create-models 3 logoclim-path
+
+  set tmin-ls-model 0
+  set tmax-ls-model 1
+  set prec-ls-model 2
+
+  ls:let #data-path data-path
+  ls:let #data-series data-series
+  ls:let #data-resolution data-resolution
+  ls:let #month start-month
+  ls:let #year start-year
+
+  ls:ask ls:models [
+    set data-path #data-path
+    set data-series #data-series
+    set data-resolution #data-resolution
+    set start-year #year
+    set start-month #month
+  ]
+
+  ls:ask tmin-ls-model [
+    set climate-variable "Average minimum temperature (°C)"
+  ]
+
+  ls:ask tmax-ls-model [
+    set climate-variable "Average maximum temperature (°C)"
+  ]
+
+  ls:ask prec-ls-model [
+    set climate-variable "Total precipitation (mm)"
+  ]
+
+  ls:ask ls:models [setup]
+end

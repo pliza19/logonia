@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+title: "{Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo"
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Vartanian
+    email: daniel.azevedo@alumni.usp.br
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0001-7782-759X'
+  - given-names: Leandro
+    family-names: Garcia
+    email: l.garcia@qub.ac.uk
+    affiliation: Queen's University Belfast
+    orcid: 'https://orcid.org/0000-0001-5947-2617'
+  - given-names: Aline Martins
+    family-names: Carvalho
+    email: alinenutri@usp.br
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0002-4900-5609'
+abstract: >-
+  {Logônia} is a NetLogo model that simulates the growth response of a fictional
+  plant species, Logônia (*Netlogia brasiliensis*), under varying climatic
+  conditions. The model integrates climate data from WorldClim 2.1 and
+  demonstrates how to incorporate the {LogoClim} model into other NetLogo
+  projects using the {LevelSpace} extension.
+keywords:
+  - Agent-Based Modeling
+  - Complex Systems
+  - Complexity Science
+  - Plant Growth Response Model
+  - Population Dynamics
+  - LevelSpace
+  - Models
+  - NetLogo
+  - Simulations
+  - WorldClim
+identifiers:
+  - type: doi
+    value: 10.17605/OSF.IO/
+    description: OSF Research Compendium
+repository-code: 'https://github.com/sustentarea/logonia'
+repository: 'https://doi.org/10.17605/OSF.IO/'
+repository-artifact: 'https://doi.org/10.17605/OSF.IO/'
+license: GPLv3

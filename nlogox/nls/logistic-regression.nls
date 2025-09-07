@@ -1,0 +1,22 @@
+to-report logistic-regression [#patch]
+  let #tmin [tmin] of #patch
+  let #tmax [tmax] of #patch
+  let #prec [prec] of #patch
+
+  ifelse (
+    (is-nan? #tmin) or
+    (is-nan? #tmax) or
+    (is-nan? #prec)
+  ) [
+    report 0
+  ] [
+    let linpred (
+      intercept +
+      beta-tmin * #tmin +
+      beta-tmax * #tmax +
+      beta-prec * #prec
+    )
+    
+    report (1 / (1 + exp(- linpred)))
+  ]
+end

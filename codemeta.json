@@ -1,0 +1,141 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "Logônia",
+  "dateCreated": "2025-09-02",
+  "applicationCategory": "Agent-Based Modeling",
+  "applicationSubCategory": "Plant Growth Modeling",
+  "name": "{Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Vartanian",
+      "givenName": "Daniel",
+      "email": "daniel.azevedo@alumni.usp.br",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0001-7782-759X"
+    },
+    {
+      "@type": "Person",
+      "familyName": "Leandro",
+      "givenName": "Garcia",
+      "email": "l.garcia@qub.ac.uk",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Queen's University Belfast",
+        "url": "https://www.qub.ac.uk"
+      },
+      "@id": "https://orcid.org/0000-0001-5947-2617"
+    },
+    {
+      "@type": "Person",
+      "familyName": "Carvalho",
+      "givenName": "Aline Martins de",
+      "email": "alinenutri@usp.br",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0002-4900-5609"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil",
+      "@id": "https://www.gov.br/saude/pt-br/composicao/sectics/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)",
+      "@id": "https://www.gov.br/cnpq/"
+    }
+  ],
+  "funding": "CNPq 444588/2023-0",
+  "provider": {
+    "@id": "https://www.fsp.usp.br/sustentarea/",
+    "@type": "Organization",
+    "name": "Sustentarea",
+    "url": "https://www.fsp.usp.br/sustentarea/"
+  },
+  "copyrightHolder": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "hi@sustentarea.com",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "maintainer": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "hi@sustentarea.com",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "description": "{Logônia} is a NetLogo model for simulating the growth response of a fictional plant species named Logônia (*Netlogia brasiliensis*) to different climatic conditions. The model incorporates climate data from WorldClim 2.1 and serves as fun example on how to integrate the {LogoClim} model into other NetLogo models using the NetLogo {LevelSpace} extension.",
+  "keywords": [
+    "Agent-Based Modeling",
+    "Complex Systems",
+    "Complexity Science",
+    "Plant Growth Response Model",
+    "Population Dynamics",
+    "LevelSpace",
+    "Models",
+    "NetLogo",
+    "Simulations",
+    "WorldClim"
+  ],
+  "license": "https://www.gnu.org/licenses/gpl-3.0",
+  "codeRepository": "https://github.com/sustentarea/logonia",
+  "issueTracker": "https://github.com/sustentarea/logonia/issues",
+  "relatedLink": [
+    "https://doi.org/10.17605/OSF.IO/",
+    "https://doi.org/10.17605/OSF.IO/"
+  ],
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "NetLogo",
+    "version": "7.0.0",
+    "url": "https://www.netlogo.org"
+  },
+  "runtimePlatform": "NetLogo version 7.0.0 (2025)",
+  "operatingSystem": [
+    "Linux",
+    "macOS",
+    "Windows"
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "NetLogo",
+      "version": ">= 7.0.0",
+      "provider": {
+        "@id": "https://www.netlogo.org",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://www.netlogo.org"
+      },
+      "sameAs": "https://www.netlogo.orgdownload.shtml"
+    },
+    {
+      "name": "NetLogo LevelSpace extension",
+      "version": ">= 2.4.0",
+      "provider": {
+        "@id": "https://www.netlogo.org",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://www.netlogo.org"
+      },
+      "sameAs": "https://github.com/NetLogo/LevelSpace/"
+    }
+  ],
+  "developmentStatus": "WIP",
+  "readme": "https://github.com/sustentarea/Logônia/blob/main/README.md",
+  "releaseNotes": "https://github.com/sustentarea/Logônia/blob/main/NEWS.md",
+  "version": "0.0.0.9000"
+}

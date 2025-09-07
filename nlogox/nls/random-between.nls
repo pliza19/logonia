@@ -1,0 +1,3 @@
+to-report random-between [#x #y]
+  report (random (#y - #x) + #x)
+end
