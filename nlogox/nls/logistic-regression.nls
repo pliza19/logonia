@@ -10,13 +10,13 @@ to-report logistic-regression [#patch]
   ) [
     report 0
   ] [
-    let linpred (
+    let linear-predictor (
       intercept +
       beta-tmin * #tmin +
       beta-tmax * #tmax +
       beta-prec * #prec
     )
-    
-    report (1 / (1 + exp(- linpred)))
+
+    report (1 / (1 + exp(- linear-predictor)))
   ]
 end

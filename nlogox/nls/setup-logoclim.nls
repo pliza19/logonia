@@ -9,11 +9,11 @@
 to setup-logoclim
   let logoclim-path "../logoclim/nlogox/logoclim.nlogox"
   let data-path "../../data/"
-
+  
   let data-series "Historical monthly weather data"
   let data-resolution "10 minutes (~340 km2 at the equator)"
-  let start-month "January"
-  let start-year 1951
+  ; let start-month "January"
+  ; let start-year 1951
 
   ls:create-models 3 logoclim-path
 

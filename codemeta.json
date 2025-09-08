@@ -80,13 +80,14 @@
   "description": "{Logônia} is a NetLogo model for simulating the growth response of a fictional plant species named Logônia (*Netlogia brasiliensis*) to different climatic conditions. The model incorporates climate data from WorldClim 2.1 and serves as fun example on how to integrate the {LogoClim} model into other NetLogo models using the NetLogo {LevelSpace} extension.",
   "keywords": [
     "Agent-Based Modeling",
+    "Artificial Life",
     "Complex Systems",
     "Complexity Science",
-    "Plant Growth Response Model",
-    "Population Dynamics",
     "LevelSpace",
     "Models",
     "NetLogo",
+    "Plant Growth",
+    "Population Dynamics",
     "Simulations",
     "WorldClim"
   ],
@@ -132,10 +133,21 @@
         "url": "https://www.netlogo.org"
       },
       "sameAs": "https://github.com/NetLogo/LevelSpace/"
+    },
+    {
+      "name": "NetLogo String extension",
+      "version": ">= 1.2.0",
+      "provider": {
+        "@id": "https://www.netlogo.org",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://www.netlogo.org"
+      },
+      "sameAs": "https://github.com/NetLogo/String-Extension/"
     }
   ],
   "developmentStatus": "WIP",
   "readme": "https://github.com/sustentarea/Logônia/blob/main/README.md",
   "releaseNotes": "https://github.com/sustentarea/Logônia/blob/main/NEWS.md",
-  "version": "0.0.0.9000"
+  "version": "0.0.0.9001"
 }

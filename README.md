@@ -35,6 +35,8 @@ soil were the Logônia plant species grow. Each patch corresponds to a
 specific geographical area and stores historical data values for
 precipitation and minimum and maximum temperature.
 
+![Logônia Sizes](images/logonia-sizes-reduced.png)
+
 The model was created to serve as an example of integration of climate
 data from [WorldClim 2.1](https://worldclim.org/) using the
 [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The
@@ -58,9 +60,10 @@ installed. This model was developed using NetLogo 7.0.0, so it is
 recommended to use this version or later.
 
 The model relies on the `LevelSpace`
-([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo
-extension, that is automatically installed when the model is run for the
-first time.
+([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String`
+([`string`](https://github.com/NetLogo/String-Extension)) NetLogo
+extension, these are automatically installed when the model is run for
+the first time.
 
 #### Downloading the Model
 

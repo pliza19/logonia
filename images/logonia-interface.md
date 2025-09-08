@@ -13,7 +13,6 @@ Interface snapshot settings.
 - Command center: closed
 - No `nls` script visible
 - “View updates” checkbox checked
-- Default widget settings
 - Maintain default settings
 
 ## Window Size
@@ -39,11 +38,11 @@ List and identify the window to be included in the GIF with:
 wmctrl -lG
 ```
 
-Resize the window to `1440`x`835` pixels using with:
+Resize the window to `1440`x`860` pixels using with:
 
 > If there are two windows with the same name, use the `-i` option to specify the window ID.
 
 ```bash
 #gravity,x,y,width,height
-wmctrl -r NetLogo -e 0,240,60,1440,835
+wmctrl -r NetLogo -e 0,240,50,1440,860
 ```

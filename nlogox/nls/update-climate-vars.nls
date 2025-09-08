@@ -1,6 +1,4 @@
-; globals [
-;   patch-coordinates
-; ]
+; globals [patch-coordinates]
 
 to update-climate-vars
   foreach (patch-coordinates) [

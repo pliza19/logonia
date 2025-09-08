@@ -27,13 +27,14 @@ abstract: >-
   projects using the {LevelSpace} extension.
 keywords:
   - Agent-Based Modeling
+  - Artificial Life
   - Complex Systems
   - Complexity Science
-  - Plant Growth Response Model
-  - Population Dynamics
   - LevelSpace
   - Models
   - NetLogo
+  - Plant Growth
+  - Population Dynamics
   - Simulations
   - WorldClim
 identifiers:

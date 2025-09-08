@@ -79,6 +79,8 @@ cat(
 
 `Logônia` operates on a grid of patches, where each patch represents the soil were the Logônia plant species grow. Each patch corresponds to a specific geographical area and stores historical data values for precipitation and minimum and maximum temperature.
 
+![Logônia Sizes](images/logonia-sizes-reduced.png)
+
 The model was created to serve as an example of integration of climate data from [WorldClim 2.1](https://worldclim.org/) using the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The climate data influences the growth of the species, adding a layer of complexity to the simulation.
 
 The data is derived from [WorldClim 2.1](https://worldclim.org/) historical monthly weather data series (1951-2024) ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)) for a selected region of the Amazon forest. This data can be reproduced using the Quarto notebooks in the `qmd` folder of this repository, which are adapted from the notebooks provided by the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
@@ -89,7 +91,7 @@ The data is derived from [WorldClim 2.1](https://worldclim.org/) historical mont
 
 To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
 
-The model relies on the `LevelSpace` ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension, that is automatically installed when the model is run for the first time.
+The model relies on the `LevelSpace` ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String` ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extension, these are automatically installed when the model is run for the first time.
 
 #### Downloading the Model
 

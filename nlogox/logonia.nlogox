@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model version="NetLogo 7.0.0-beta2" snapToGrid="true">
-  <code><![CDATA[; Logônia: Netlogia Brasiliensis Growth Response Model in NetLogo
+  <code><![CDATA[; {Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo
 ;
-; Version: 2025-09-07 0.0.0.9000
+; Version: 2025-09-08 0.0.0.9001
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
 ; Repository: <https://github.com/sustentarea/logonia>
 ;
 ; Require: NetLogo >= 7.0.0
-; Required NetLogo extensions: `ls`
+; Required NetLogo extensions: `ls` & `string`
+; 
+; Lines marked with {LogoClim} refer to code related to the {LogoClim} model.
 
 __includes [
-  "nls/check-nan.nls"
-  "nls/combine.nls"
   "nls/logistic-regression.nls"
   "nls/random-between.nls"
-  "nls/setup-logoclim.nls"
-  "nls/setup-patches.nls"
-  "nls/setup-variables.nls"
-  "nls/setup-world.nls"
-  "nls/update-climate-vars.nls"
+  "nls/check-nan.nls" ; {LogoClim}
+  "nls/check-start-year.nls" ; {LogoClim}
+  "nls/combine.nls" ; {LogoClim}
+  "nls/setup-logoclim.nls" ; {LogoClim}
+  "nls/setup-patches.nls" ; {LogoClim}
+  "nls/setup-variables.nls" ; {LogoClim}
+  "nls/setup-world.nls" ; {LogoClim}
+  "nls/update-climate-vars.nls" ; {LogoClim}
 ]
 
-extensions [ls]
+extensions [
+  ls
+  string
+]
 
 globals [
-  dead-count
-  index
-  patch-coordinates
   plot-x-max-range
-  tmax-ls-model
-  tmin-ls-model
-  prec-ls-model
-  month
-  year
-  settings
+  index ; {LogoClim}
+  month ; {LogoClim}
+  year ; {LogoClim}
+  tmin-ls-model ; {LogoClim}
+  tmax-ls-model ; {LogoClim}
+  prec-ls-model ; {LogoClim}
+  patch-coordinates ; {LogoClim}
+  settings ; {LogoClim}
 ]
 
 breed [logonias logonia]
 
 patches-own [
-  tmin
-  tmax
-  prec
-  latitude
-  longitude
   probability
+  tmin ; {LogoClim}
+  tmax ; {LogoClim}
+  prec ; {LogoClim}
+  latitude ; {LogoClim}
+  longitude ; {LogoClim}
 ]
 
 logonias-own [
@@ -58,29 +63,37 @@ logonias-own [
 to setup
   clear-all
 
+  if (check-start-year = false) [stop]
+  
   ask patches [
-    set pcolor background-color
+    set pcolor gray + 4
     set probability logistic-regression self
   ]
 
   create-logonias initial-logonias [
-    let dice random-float 1
+    let #chance random-float 1
 
-    (ifelse (dice <= 0.2) [
-      set phase "plant"
-      set shape "plant"
-      set age random-between 20 50
-      set energy random-between 5 30
-    ] (dice <= 0.5) [
-      set phase "plant medium"
-      set shape "plant medium"
-      set age random-between 10 15
-      set energy random-between 1 5
+    (ifelse (#chance <= 0.2) [
+      set #chance random-between 30 50
+      
+      set age #chance
+      set phase "adult"
+      set shape "adult"
+      set energy #chance
+    ] ((#chance > 0.2) and (#chance <= 0.5)) [
+      set #chance random-between 10 30
+      
+      set age #chance
+      set phase "maturing"
+      set shape "maturing"
+      set energy #chance
     ] [
-      set phase "plant small"
-      set shape "plant small"
-      set age random-between 0 5
-      set energy 1
+      set #chance random-between 1 10
+      
+      set age #chance
+      set phase "young"
+      set shape "young"
+      set energy #chance
     ])
 
     set size 2
@@ -92,15 +105,16 @@ to setup
 
     colorize
 
-    ask patch-here [set pcolor soil-color]
+    ask patch-here [set pcolor brown + 3]
     set ycor ycor + 1
   ]
 
-  ls:reset
-  setup-logoclim
-  setup-world
-  setup-variables
-  setup-patches
+  ls:reset ; {LogoClim}
+  
+  setup-logoclim ; {LogoClim}
+  setup-world ; {LogoClim}
+  setup-variables ; {LogoClim}
+  setup-patches ; {LogoClim}
 
   reset-ticks
 end
@@ -108,28 +122,33 @@ end
 to go
   if (
     (not any? logonias) or
-    ((month = "December") and (year = 2024))
+    ((month = "December") and (year = 2024)) ; {LogoClim}
   ) [
       stop
   ]
 
-  ls:ask ls:models [go true]
+  ls:ask ls:models [go true] ; {LogoClim}
 
-  set index [index] ls:of tmin-ls-model
-  set year [year] ls:of tmin-ls-model
-  set month [month] ls:of tmin-ls-model
+  set index [index] ls:of tmin-ls-model ; {LogoClim}
+  set month [month] ls:of tmin-ls-model ; {LogoClim}
+  set year [year] ls:of tmin-ls-model ; {LogoClim}
+  
+  update-climate-vars ; {LogoClim}
+
   set plot-x-max-range ceiling ((ticks + 1) * 1.25)
-
-  update-climate-vars
-
+  
+  ask patches [
+    set probability logistic-regression self
+  ]
+  
   ask logonias [
     grow
     senesce
     reproduce
-  ]
-  
-  ask patches [
-    set probability logistic-regression self
+    
+    if ((energy = 0) or (age >= 100)) [
+      die
+    ] 
   ]
 
   wait 0.1
@@ -137,111 +156,138 @@ to go
 end
 
 to grow
-  let prob-growth logistic-regression patch-here
+  let #prob-growth logistic-regression patch-here
 
-  if (random-float 1 < prob-growth) [
-    set energy energy + 1
-  ]
-
-  (ifelse (energy > 30) [
-    set phase "plant"
-    set shape "plant"
-  ] (energy > 10) [
-    set phase "plant medium"
-    set shape "plant medium"
-  ] [
-    ; Do nothing.
+  (ifelse (random-float 1 <= #prob-growth) [
+    set energy energy + energy-gain
+  ] (#prob-growth < 0.25) [
+    set energy energy - 1
+  ])
+  
+  (ifelse (
+    (phase = "young") and
+    ((energy >= 10) and (energy < 30))
+  ) [
+    set phase "maturing"
+    set shape "maturing"
+  ] ((phase = "maturing") and (energy >= 30)) [
+    set phase "adult"
+    set shape "adult"
   ])
 end
 
 to senesce
   set age age + 1
-
-  ; "#2CD13B" (lime) | "#9D6E48" (brown)
-  ; brandr::interpolate_colors(5, colors = c("#2CD13B", "#9D6E48"))
-  let #colors [65 54.9 54.6 42.7 35]
-
-  ifelse (age >= 100) [
-    die
-
-    set dead-count dead-count + 1
-  ] [
-    colorize
-  ]
+  
+  colorize
 end
 
 to reproduce
   if (
-    (random-float 1 < (reproduction-rate / 100)) and
-    (phase = "plant") and
-    (energy >= 30)
+    (phase = "adult") and
+    (energy >= 30) and
+    (random-float 1 <= (reproduction-rate / 100))
   ) [
     hatch 1 [
-      set phase "plant small"
-      set shape "plant small"
-      set size 2
-      set energy 1
       set age 0
+      set phase "young"
+      set shape "young"
+      set energy 1
 
+      set size 2
       setxy random-pxcor random-pycor
 
       ifelse (any? other turtles-here) [
         die
       ] [
-        ask patch-here [set pcolor soil-color]
+        ask patch-here [set pcolor brown + 3]
         set ycor ycor + 1 
       ]
     ]
   ]
 end
 
+; "#2CD13B" (lime) | "#9D6E48" (brown)
+; [R] brandr::interpolate_colors(5, colors = c("#2CD13B", "#9D6E48"))
+
 to colorize
-  ; "#2CD13B" (lime) | "#9D6E48" (brown)
-  ; brandr::interpolate_colors(5, colors = c("#2CD13B", "#9D6E48"))
   let #colors [65 54.9 54.6 42.7 35]
 
-  (ifelse (age >= 80) [
-    set color item 4 #colors
-  ] (age >= 70) [
-    set color item 3 #colors
-  ] (age >= 30) [
-    set color item 2 #colors
-  ] (age >= 10) [
-    set color item 1 #colors
-  ] [
+  (ifelse (age < 10) [
     set color item 0 #colors
+  ] ((age >= 10) and (age < 40)) [
+    set color item 1 #colors
+  ] ((age >= 40) and (age < 70)) [
+    set color item 2 #colors
+  ] ((age >= 70) and (age < 90)) [
+    set color item 3 #colors
+  ] [
+    set color item 4 #colors
   ])
 end]]></code>
   <widgets>
-    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="625" showTickCounter="true" patchSize="13.911111111111111" fontSize="14" wrappingAllowedY="true" width="625" tickCounterLabel="ticks" maxPycor="22" updateMode="0" maxPxcor="22" minPxcor="-22"></view>
-    <slider x="10" step="0.01" y="175" max="100" width="250" display="intercept" height="50" min="-300" direction="Horizontal" default="-222.5" variable="intercept"></slider>
-    <slider x="10" step="0.1" y="120" max="100" width="250" display="reproduction-rate" height="50" min="0" direction="Horizontal" default="5.0" variable="reproduction-rate" units="%"></slider>
-    <slider x="10" step="1" y="65" max="100" width="250" display="initial-logonias" height="50" min="0" direction="Horizontal" default="30.0" variable="initial-logonias"></slider>
-    <button x="10" actionKey="S" y="10" height="50" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
-    <button x="140" actionKey="G" y="10" height="50" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
-    <monitor x="905" precision="0" y="10" height="60" fontSize="11" width="250" display="Data series">ifelse-value
+    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="626" showTickCounter="true" patchSize="13.911111111111111" fontSize="14" wrappingAllowedY="true" width="626" tickCounterLabel="ticks" maxPycor="22" updateMode="0" maxPxcor="22" minPxcor="-22"></view>
+    <button x="10" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
+    <monitor x="905" precision="0" y="10" height="60" fontSize="11" width="250" display="Data Series">ifelse-value
   ((settings = 0))
   ["NA"]
   ["Historical monthly weather data"]</monitor>
-    <plot x="905" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="75" xMin="0.0" height="260" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Evolution">
+    <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
+  ((settings = 0))
+  ["NA"]
+  [month]</monitor>
+    <monitor x="1290" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
+  ((settings = 0))
+  ["NA"]
+  [year]</monitor>
+    <plot x="905" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="75" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Logônias">
       <setup></setup>
       <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month) or (index = 1)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot 1</update>
+      </pen>
       <pen interval="1.0" mode="0" display="Young" color="-13840069" legend="true">
         <setup></setup>
-        <update>plot count logonias with [shape = "plant small"]</update>
+        <update>plot count logonias with [shape = "young"]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Maturing" color="-7171555" legend="true">
         <setup></setup>
-        <update>plot count logonias with [shape = "plant medium"]</update>
+        <update>plot count logonias with [shape = "maturing"]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Adult" color="-10402772" legend="true">
         <setup></setup>
-        <update>plot count logonias with [shape = "plant"]</update>
+        <update>plot count logonias with [shape = "adult"]</update>
       </pen>
     </plot>
-    <plot x="1075" autoPlotX="true" yMax="35.0" autoPlotY="true" yAxis="Mean" y="340" xMin="0.0" height="260" legend="true" xMax="0.0" yMin="20.0" width="165" xAxis="Months" display="Temperature">
+    <monitor x="905" precision="3" y="630" height="60" fontSize="11" width="125" display="Mean Growth P.">mean [probability] of patches with [not is-nan? tmin]</monitor>
+    <plot x="905" autoPlotX="false" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="385" xMin="0.0" height="240" legend="false" xMax="1.0" yMin="0.0" width="165" xAxis="Probability" display="Growth Prob.">
+      <setup></setup>
+      <update></update>
+      <pen interval="0.1" mode="1" display="Growth Prob." color="-16777216" legend="true">
+        <setup></setup>
+        <update>histogram [probability] of patches</update>
+      </pen>
+    </plot>
+    <plot x="1075" autoPlotX="true" yMax="40.0" autoPlotY="true" yAxis="Mean" y="385" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="15.0" width="165" xAxis="Months" display="Temperature">
       <setup></setup>
       <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month) or (index = 1)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot 16</update>
+      </pen>
       <pen interval="1.0" mode="0" display="Minimum" color="-7500403" legend="true">
         <setup></setup>
         <update>plot mean [tmin] of patches with [not is-nan? tmin]</update>
@@ -251,39 +297,53 @@ end]]></code>
         <update>plot mean [tmax] of patches with [not is-nan? tmax]</update>
       </pen>
     </plot>
-    <plot x="1245" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Mean" y="340" xMin="0.0" height="260" legend="false" xMax="0.0" yMin="0.0" width="165" xAxis="Months" display="Precipitation">
+    <plot x="1245" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Mean" y="385" xMin="0.0" height="240" legend="false" xMax="0.0" yMin="0.0" width="165" xAxis="Months" display="Precipitation">
       <setup></setup>
       <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month) or (index = 1)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot 1</update>
+      </pen>
       <pen interval="1.0" mode="0" display="Precipitation" color="-16777216" legend="true">
         <setup></setup>
         <update>plot mean [prec] of patches with [not is-nan? prec]</update>
       </pen>
     </plot>
-    <plot x="905" autoPlotX="false" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="340" xMin="0.0" height="260" legend="false" xMax="1.0" yMin="0.0" width="165" xAxis="Probability" display="Growth Prob.">
-      <setup></setup>
-      <update></update>
-      <pen interval="0.1" mode="1" display="Precipitation" color="-16777216" legend="true">
-        <setup></setup>
-        <update>histogram [probability] of patches</update>
-      </pen>
-    </plot>
-    <monitor x="1290" precision="3" y="605" height="60" fontSize="11" width="120" display="Mean Prec.">mean [prec] of patches with [not is-nan? prec]</monitor>
-    <monitor x="905" precision="3" y="605" height="60" fontSize="11" width="125" display="Mean Growth P">mean [probability] of patches with [not is-nan? tmin]</monitor>
-    <monitor x="1035" precision="3" y="605" height="60" fontSize="11" width="125" display="Mean T. Min.">mean [tmin] of patches with [not is-nan? tmin]</monitor>
-    <monitor x="1165" precision="3" y="605" height="60" fontSize="11" width="120" display="Mean T. Max.">mean [tmax] of patches with [not is-nan? tmax]</monitor>
-    <input x="10" multiline="false" y="395" height="60" variable="background-color" type="color" width="250">9.0</input>
-    <slider x="10" step="0.01" y="230" max="3" width="250" display="beta-tmin" height="50" min="-3" direction="Horizontal" default="0.35" variable="beta-tmin"></slider>
-    <slider x="10" step="0.01" y="285" max="3" width="250" display="beta-tmax" height="50" min="-3" direction="Horizontal" default="0.45" variable="beta-tmax"></slider>
-    <slider x="10" step="0.01" y="340" max="3" width="250" display="beta-prec" height="50" min="-3" direction="Horizontal" default="1.0" variable="beta-prec"></slider>
-    <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [month]</monitor>
-    <monitor x="1290" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [year]</monitor>
-    <input x="10" multiline="false" y="460" height="60" variable="soil-color" type="color" width="250">38.0</input>
+    <monitor x="1290" precision="3" y="630" height="60" fontSize="11" width="120" display="Mean Prec.">mean [prec] of patches with [not is-nan? prec]</monitor>
+    <monitor x="1165" precision="3" y="630" height="60" fontSize="11" width="120" display="Mean T. Max.">mean [tmax] of patches with [not is-nan? tmax]</monitor>
+    <monitor x="1035" precision="3" y="630" height="60" fontSize="11" width="125" display="Mean T. Min.">mean [tmin] of patches with [not is-nan? tmin]</monitor>
+    <monitor x="1075" precision="0" y="320" height="60" fontSize="11" width="165" display="Maturing">count logonias with [phase = "maturing"]</monitor>
+    <monitor x="1245" precision="0" y="320" height="60" fontSize="11" width="165" display="Adult">count logonias with [phase = "adult"]</monitor>
+    <monitor x="905" precision="0" y="320" height="60" fontSize="11" width="165" display="Young">count logonias with [phase = "young"]</monitor>
+    <button x="140" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
+    <chooser x="10" y="55" height="60" variable="start-month" current="0" width="250" display="start-month">
+      <choice type="string" value="January"></choice>
+      <choice type="string" value="February"></choice>
+      <choice type="string" value="March"></choice>
+      <choice type="string" value="April"></choice>
+      <choice type="string" value="May"></choice>
+      <choice type="string" value="June"></choice>
+      <choice type="string" value="July"></choice>
+      <choice type="string" value="August"></choice>
+      <choice type="string" value="September"></choice>
+      <choice type="string" value="October"></choice>
+      <choice type="string" value="November"></choice>
+      <choice type="string" value="December"></choice>
+    </chooser>
+    <slider x="10" step="0.01" y="350" max="100" width="250" display="intercept" height="50" min="-300" direction="Horizontal" default="-222.5" variable="intercept"></slider>
+    <slider x="10" step="0.01" y="405" max="3" width="250" display="beta-tmin" height="50" min="-3" direction="Horizontal" default="0.35" variable="beta-tmin"></slider>
+    <slider x="10" step="0.01" y="460" max="3" width="250" display="beta-tmax" height="50" min="-3" direction="Horizontal" default="0.45" variable="beta-tmax"></slider>
+    <slider x="10" step="0.01" y="515" max="3" width="250" display="beta-prec" height="50" min="-3" direction="Horizontal" default="1.0" variable="beta-prec"></slider>
+    <slider x="10" step="0.1" y="295" max="5" width="250" display="energy-gain" height="50" min="1" direction="Horizontal" default="2.0" variable="energy-gain"></slider>
+    <slider x="10" step="0.1" y="240" max="100" width="250" display="reproduction-rate" height="50" min="0" direction="Horizontal" default="20.0" variable="reproduction-rate" units="%"></slider>
+    <slider x="10" step="1" y="185" max="100" width="250" display="initial-logonias" height="50" min="0" direction="Horizontal" default="30.0" variable="initial-logonias"></slider>
+    <input x="10" multiline="false" y="120" height="60" variable="start-year" type="number" width="250">1951.0</input>
   </widgets>
   <info><![CDATA[> Development version.]]></info>
   <turtleShapes>
@@ -295,7 +355,7 @@ end]]></code>
         <point x="260" y="250"></point>
       </polygon>
     </shape>
-    <shape name="plant" rotatable="false" editableColorIndex="0">
+    <shape name="adult" rotatable="false" editableColorIndex="0">
       <rectangle endX="165" startY="90" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
       <polygon color="-1920102913" filled="true" marked="true">
         <point x="135" y="255"></point>
@@ -347,7 +407,7 @@ end]]></code>
         <point x="165" y="90"></point>
       </polygon>
     </shape>
-    <shape name="plant medium" rotatable="false" editableColorIndex="0">
+    <shape name="maturing" rotatable="false" editableColorIndex="0">
       <rectangle endX="165" startY="165" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
       <polygon color="-1920102913" filled="true" marked="true">
         <point x="135" y="255"></point>
@@ -385,7 +445,7 @@ end]]></code>
         <point x="165" y="165"></point>
       </polygon>
     </shape>
-    <shape name="plant small" rotatable="false" editableColorIndex="0">
+    <shape name="young" rotatable="false" editableColorIndex="0">
       <rectangle endX="165" startY="240" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
       <polygon color="-1920102913" filled="true" marked="true">
         <point x="135" y="255"></point>
