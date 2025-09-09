@@ -5,7 +5,7 @@
    height="473.68399"
    version="1.1"
    id="svg7"
-   sodipodi:docname="plant-small.svg"
+   sodipodi:docname="logonia-young.svg"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -27,7 +27,7 @@
      inkscape:deskcolor="#d1d1d1"
      showguides="true"
      inkscape:zoom="0.65"
-     inkscape:cx="279.23077"
+     inkscape:cx="280"
      inkscape:cy="180.76923"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -88,14 +88,6 @@
   </sodipodi:namedview>
   <title
      id="title1">plant</title>
-  <rect
-     x="350.78946"
-     y="268.1579"
-     width="105.26316"
-     height="210.52621"
-     id="rect1"
-     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.87551"
-     inkscape:label="Stem" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -116,22 +108,41 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
-  <polygon
-     points="75,105 135,135 135,105 90,60 45,45 "
-     id="polygon5-6"
-     style="fill:#000000;fill-opacity:1;stroke:none"
-     transform="matrix(-3.5087719,0,0,3.5087719,929.73683,-47.631579)"
-     inkscape:label="Branch 2" />
-  <polygon
-     points="45,45 75,105 135,135 135,105 90,60 "
-     id="polygon5"
-     style="fill:#000000;fill-opacity:1;stroke:none"
-     transform="matrix(3.5087719,0,0,3.5087719,-122.89475,-47.631579)"
-     inkscape:label="Branch 1" />
-  <polygon
-     points="150,15 180,45 165,90 135,90 120,45 "
-     id="polygon7"
-     style="fill:#000000;fill-opacity:1;stroke:none"
-     transform="matrix(3.5087719,0,0,3.5087719,-122.89474,-47.631571)"
-     inkscape:label="Bud" />
+  <g
+     id="g1"
+     style="font-variation-settings:normal;display:none;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.285;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     inkscape:label="Editable"
+     sodipodi:insensitive="true">
+    <rect
+       x="350.78946"
+       y="268.1579"
+       width="105.26316"
+       height="210.52621"
+       id="rect1"
+       style="font-variation-settings:normal;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.285;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       inkscape:label="Stem" />
+    <polygon
+       points="135,105 90,60 45,45 75,105 135,135 "
+       id="polygon5-6"
+       style="font-variation-settings:normal;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.081225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       transform="matrix(-3.5087719,0,0,3.5087719,929.73683,-47.631579)"
+       inkscape:label="Branch 2" />
+    <polygon
+       points="135,135 135,105 90,60 45,45 75,105 "
+       id="polygon5"
+       style="font-variation-settings:normal;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.081225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       transform="matrix(3.5087719,0,0,3.5087719,-122.89475,-47.631579)"
+       inkscape:label="Branch 1" />
+    <polygon
+       points="165,90 135,90 120,45 150,15 180,45 "
+       id="polygon7"
+       style="font-variation-settings:normal;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.081225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       transform="matrix(3.5087719,0,0,3.5087719,-122.89474,-47.631571)"
+       inkscape:label="Bud" />
+  </g>
+  <path
+     id="rect1-1"
+     style="font-variation-settings:normal;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.285;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"
+     inkscape:label="Merged"
+     d="M 403.42188 5 L 298.1582 110.26367 L 350.78906 268.1582 L 350.78906 320.78906 L 192.89453 162.89453 L 35 110.26367 L 140.26367 320.78906 L 350.78906 426.05273 L 350.78906 478.68359 L 456.05273 478.68359 L 456.05273 426.05273 L 666.57812 320.78906 L 771.8418 110.26367 L 613.94727 162.89453 L 456.05273 320.78906 L 456.05273 268.1582 L 508.68359 110.26367 L 403.42188 5 z " />
 </svg>

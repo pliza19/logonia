@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="35 5 2701.7539 1000"
-   width="2701.7539"
+   viewBox="35 5 4666.666 1000"
+   width="4666.666"
    height="1000"
    version="1.1"
    id="svg7"
-   sodipodi:docname="plant-sizes.svg"
+   sodipodi:docname="logonia-sizes.svg"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   inkscape:export-filename="plant-sizes-reduced.png"
-   inkscape:export-xdpi="35.529999"
-   inkscape:export-ydpi="35.529999"
+   inkscape:export-filename="logonia-sizes.png"
+   inkscape:export-xdpi="20.571432"
+   inkscape:export-ydpi="20.571432"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -30,14 +30,14 @@
      inkscape:deskcolor="#d1d1d1"
      showguides="true"
      inkscape:zoom="0.325"
-     inkscape:cx="1469.2308"
-     inkscape:cy="463.07692"
+     inkscape:cx="1316.9231"
+     inkscape:cy="943.07692"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg7">
+     inkscape:current-layer="g6">
     <sodipodi:guide
        position="360.07681,736.8421"
        orientation="0,-1"
@@ -121,130 +121,41 @@
      inkscape:label="Adult"
      transform="translate(201.75394)"
      style="fill:#9d6e48;fill-opacity:1">
-    <rect
-       x="2113.9475"
-       y="268.1579"
-       width="105.26316"
-       height="736.8421"
-       id="rect1"
+    <path
+       id="rect1-7-3"
        style="fill:#9d6e48;fill-opacity:1;stroke:none;stroke-width:3.50877"
-       inkscape:label="Stem" />
-    <polygon
-       points="90,60 45,45 75,105 135,135 135,105 "
-       id="polygon5-6-6-2"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,2692.8947,478.68421)"
-       inkscape:label="Branch 6" />
-    <polygon
-       points="135,105 90,60 45,45 75,105 135,135 "
-       id="polygon5-5-1"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,1640.2632,478.68421)"
-       inkscape:label="Branch 5" />
-    <polygon
-       points="75,105 135,135 135,105 90,60 45,45 "
-       id="polygon5-6-6"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,2692.8947,215.52631)"
-       inkscape:label="Branch 4" />
-    <polygon
-       points="45,45 75,105 135,135 135,105 90,60 "
-       id="polygon5-5"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,1640.2632,215.52631)"
-       inkscape:label="Branch 3" />
-    <polygon
-       points="135,105 90,60 45,45 75,105 135,135 "
-       id="polygon5-6"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,2692.8947,-47.631579)"
-       inkscape:label="Branch 2" />
-    <polygon
-       points="135,135 135,105 90,60 45,45 75,105 "
-       id="polygon5"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,1640.2632,-47.631579)"
-       inkscape:label="Branch 1" />
-    <polygon
-       points="180,45 165,90 135,90 120,45 150,15 "
-       id="polygon7"
-       style="fill:#9d6e48;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,1640.2632,-47.631579)"
-       inkscape:label="Bud" />
+       inkscape:label="3"
+       d="M 4131.4902 5 L 4026.2285 110.26367 L 4078.8593 268.1582 L 4078.8593 320.78906 L 3920.9648 162.89453 L 3763.0703 110.26367 L 3868.334 320.78906 L 4078.8593 426.05273 L 4078.8593 583.94727 L 3920.9648 426.05273 L 3763.0703 373.42188 L 3868.334 583.94727 L 4078.8593 689.21094 L 4078.8593 847.10547 L 3920.9648 689.21094 L 3763.0703 636.57812 L 3868.334 847.10547 L 4078.8593 952.36914 L 4078.8593 1005 L 4184.123 1005 L 4184.123 952.36914 L 4394.6484 847.10547 L 4499.9121 636.57812 L 4342.0175 689.21094 L 4184.123 847.10547 L 4184.123 689.21094 L 4394.6484 583.94727 L 4499.9121 373.42188 L 4342.0175 426.05273 L 4184.123 583.94727 L 4184.123 426.05273 L 4394.6484 320.78906 L 4499.9121 110.26367 L 4342.0175 162.89453 L 4184.123 320.78906 L 4184.123 268.1582 L 4236.7539 110.26367 L 4131.4902 5 z " />
+    <path
+       id="rect1-7"
+       style="fill:#84841b;fill-opacity:1;stroke:none;stroke-width:3.50877"
+       inkscape:label="2"
+       d="M 3149.0351 5 L 3043.7715 110.26367 L 3096.4043 268.1582 L 3096.4043 320.78906 L 2938.5097 162.89453 L 2780.6132 110.26367 L 2885.8769 320.78906 L 3096.4043 426.05273 L 3096.4043 583.94727 L 2938.5097 426.05273 L 2780.6132 373.42188 L 2885.8769 583.94727 L 3096.4043 689.21094 L 3096.4043 847.10547 L 2938.5097 689.21094 L 2780.6132 636.57812 L 2885.8769 847.10547 L 3096.4043 952.36914 L 3096.4043 1005 L 3201.666 1005 L 3201.666 952.36914 L 3412.1933 847.10547 L 3517.457 636.57812 L 3359.5605 689.21094 L 3201.666 847.10547 L 3201.666 689.21094 L 3412.1933 583.94727 L 3517.457 373.42188 L 3359.5605 426.05273 L 3201.666 583.94727 L 3201.666 426.05273 L 3412.1933 320.78906 L 3517.457 110.26367 L 3359.5605 162.89453 L 3201.666 320.78906 L 3201.666 268.1582 L 3254.2988 110.26367 L 3149.0351 5 z " />
+    <path
+       id="rect1"
+       style="fill:#52a537;fill-opacity:1;stroke:none;stroke-width:3.50877"
+       inkscape:label="1"
+       d="M 2166.58 5 L 2061.3164 110.26367 L 2113.9472 268.1582 L 2113.9472 320.78906 L 1956.0527 162.89453 L 1798.1582 110.26367 L 1903.4218 320.78906 L 2113.9472 426.05273 L 2113.9472 583.94727 L 1956.0527 426.05273 L 1798.1582 373.42188 L 1903.4218 583.94727 L 2113.9472 689.21094 L 2113.9472 847.10547 L 1956.0527 689.21094 L 1798.1582 636.57812 L 1903.4218 847.10547 L 2113.9472 952.36914 L 2113.9472 1005 L 2219.2109 1005 L 2219.2109 952.36914 L 2429.7363 847.10547 L 2535 636.57812 L 2377.1054 689.21094 L 2219.2109 847.10547 L 2219.2109 689.21094 L 2429.7363 583.94727 L 2535 373.42188 L 2377.1054 426.05273 L 2219.2109 583.94727 L 2219.2109 426.05273 L 2429.7363 320.78906 L 2535 110.26367 L 2377.1054 162.89453 L 2219.2109 320.78906 L 2219.2109 268.1582 L 2271.8418 110.26367 L 2166.58 5 z " />
   </g>
   <g
      id="g4"
      inkscape:label="Maturing"
      style="fill:#2cd13b;fill-opacity:1">
-    <rect
-       x="350.78946"
-       y="794.47369"
-       width="105.26316"
-       height="210.52621"
-       id="rect1-9"
-       style="fill:#2cd13b;fill-opacity:1;stroke:none;stroke-width:1.87551"
-       inkscape:label="Stem" />
-    <polygon
-       points="90,60 45,45 75,105 135,135 135,105 "
-       id="polygon5-6-3"
-       style="fill:#2cd13b;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,929.73683,478.68421)"
-       inkscape:label="Branch 2" />
-    <polygon
-       points="135,105 90,60 45,45 75,105 135,135 "
-       id="polygon5-60"
-       style="fill:#2cd13b;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,-122.89475,478.68421)"
-       inkscape:label="Branch 1" />
-    <polygon
-       points="135,90 120,45 150,15 180,45 165,90 "
-       id="polygon7-6"
-       style="fill:#2cd13b;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,-122.89474,478.68422)"
-       inkscape:label="Bud" />
+    <path
+       id="rect1-6"
+       style="fill:#649f41;fill-opacity:1;stroke:none;stroke-width:2.81327"
+       inkscape:label="1"
+       d="M 1385.877 268.1582 L 1280.6133 373.42188 L 1333.2461 531.31641 L 1333.2461 583.94727 L 1175.3516 426.05273 L 1017.4551 373.42188 L 1122.7188 583.94727 L 1333.2461 689.21094 L 1333.2461 847.10547 L 1175.3516 689.21094 L 1017.4551 636.57812 L 1122.7188 847.10547 L 1333.2461 952.36914 L 1333.2461 1005 L 1438.5078 1005 L 1438.5078 952.36914 L 1649.0352 847.10547 L 1754.2988 636.57812 L 1596.4043 689.21094 L 1438.5078 847.10547 L 1438.5078 689.21094 L 1649.0352 583.94727 L 1754.2988 373.42188 L 1596.4043 426.05273 L 1438.5078 583.94727 L 1438.5078 531.31641 L 1491.1406 373.42188 L 1385.877 268.1582 z " />
   </g>
   <g
      id="g6"
      inkscape:label="Young"
-     transform="translate(79.66237)"
+     transform="translate(79.662407)"
      style="fill:#649f41;fill-opacity:1">
-    <rect
-       x="1253.583"
-       y="531.3158"
-       width="105.26316"
-       height="473.6842"
-       id="rect1-6"
-       style="fill:#649f41;fill-opacity:1;stroke:none;stroke-width:2.81327"
-       inkscape:label="Stem" />
-    <polygon
-       points="90,60 45,45 75,105 135,135 135,105 "
-       id="polygon5-6-6-1"
-       style="fill:#649f41;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,1832.5304,478.68421)"
-       inkscape:label="Branch 4" />
-    <polygon
-       points="135,105 90,60 45,45 75,105 135,135 "
-       id="polygon5-5-8"
-       style="fill:#649f41;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,779.89879,478.68421)"
-       inkscape:label="Branch 3" />
-    <polygon
-       points="75,105 135,135 135,105 90,60 45,45 "
-       id="polygon5-6-7"
-       style="fill:#649f41;fill-opacity:1;stroke:none"
-       transform="matrix(-3.5087719,0,0,3.5087719,1832.5304,215.52632)"
-       inkscape:label="Branch 2" />
-    <polygon
-       points="45,45 75,105 135,135 135,105 90,60 "
-       id="polygon5-9"
-       style="fill:#649f41;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,779.89879,215.52632)"
-       inkscape:label="Branch 1" />
-    <polygon
-       points="120,45 150,15 180,45 165,90 135,90 "
-       id="polygon7-2"
-       style="fill:#649f41;fill-opacity:1;stroke:none"
-       transform="matrix(3.5087719,0,0,3.5087719,779.8988,215.52632)"
-       inkscape:label="Bud" />
+    <path
+       id="rect1-9"
+       style="fill:#2cd13b;fill-opacity:1;stroke:none;stroke-width:1.87551"
+       inkscape:label="1"
+       d="M 323.75947 531.31641 L 218.4958 636.57812 L 271.12666 794.47461 L 271.12666 847.10547 L 113.23212 689.21094 L -44.662407 636.57812 L 60.601265 847.10547 L 271.12666 952.36914 L 271.12666 1005 L 376.39033 1005 L 376.39033 952.36914 L 586.91572 847.10547 L 692.17939 636.57812 L 534.28486 689.21094 L 376.39033 847.10547 L 376.39033 794.47461 L 429.02119 636.57812 L 323.75947 531.31641 z " />
   </g>
 </svg>
