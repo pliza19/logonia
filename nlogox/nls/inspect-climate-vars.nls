@@ -1,0 +1,48 @@
+; globals [
+;   inspect-tmin
+;   inspect-tmax
+;   inspect-prec
+; ]
+
+to inspect-climate-vars
+  if (
+    (inspect-tmin = true) or
+    (inspect-tmax = true) or
+    (inspect-prec = true) and
+    (check-inspection = true)
+  ) [
+    ask logonias [hide-turtle]
+
+    let #color 0
+    let #var 0
+
+    (ifelse (inspect-tmin = true) [
+      set #color lime
+      set #var "tmin"
+    ] (inspect-tmax = true) [
+      set #color 42.7
+      set #var "tmax"
+    ] (inspect-prec = true) [
+      set #color brown
+      set #var "prec"
+    ])
+
+    let #value [runresult #var] of patches with [not is-nan? (runresult #var)]
+    let #min-pcolor-value min #value
+    let #max-pcolor-value max #value
+
+    ask (patches) [
+      ifelse (not is-nan? (runresult #var)) [
+        set pcolor (
+          scale-color
+            #color
+            (runresult #var)
+            #min-pcolor-value
+            #max-pcolor-value
+      )
+      ] [
+        set pcolor gray + 4
+      ]
+    ]
+  ]
+end
