@@ -42,20 +42,14 @@ options(cli.progress_show_after = 0)
 ```
 
 ```{r}
-#| eval: false
-
 series <- "historical-monthly-weather-data"
 ```
 
 ```{r}
-#| eval: false
-
 resolution <- "10m"
 ```
 
 ```{r}
-#| eval: false
-
 model <- NULL
 ```
 
@@ -262,22 +256,16 @@ beep(8)
 ## Unzip the Files
 
 ```{r}
-#| eval: false
-
 zip_dir <- path(raw_data_wc_series_res_dir, "zip")
 ```
 
 ```{r}
-#| eval: false
-
 tif_dir <- path(raw_data_wc_series_res_dir, "tif")
 
 if (!dir_exists(tif_dir)) tif_dir |> dir_create(recurse = TRUE)
 ```
 
 ```{r}
-#| eval: false
-
 if (dir_exists(zip_dir)) {
   accompanying_files <- c("README.md", "LICENSE.md")
 
@@ -294,7 +282,6 @@ if (dir_exists(zip_dir)) {
 ```
 
 ```{r}
-#| eval: true
 #| output: false
 
 if (dir_exists(zip_dir)) {
@@ -325,7 +312,5 @@ if (dir_exists(zip_dir)) {
 ```
 
 ```{r}
-#| eval: false
-
 if (dir_exists(zip_dir)) zip_dir |> dir_delete()
 ```
