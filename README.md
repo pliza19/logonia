@@ -1,4 +1,4 @@
-# Logônia
+# Logônia <img src = "images/logo.png" align="right" width="120" />
 
 <!-- Quarto render -->
 
@@ -31,11 +31,11 @@ extension.
 ## How It Works
 
 `Logônia` operates on a grid of patches, where each patch represents the
-soil were the Logônia plant species grow. Each patch corresponds to a
-specific geographical area and stores historical data values for
-precipitation and minimum and maximum temperature.
+soil in which the logônia plant species grow. Each patch corresponds to
+a specific geographic area and stores historical values of different
+climate variables.
 
-![Logônia Sizes](images/logonia-sizes-reduced.png)
+![Logônia Sizes](images/logonia-sizes.svg)
 
 The model was created to serve as an example of integration of climate
 data from [WorldClim 2.1](https://worldclim.org/) using the
@@ -43,13 +43,19 @@ data from [WorldClim 2.1](https://worldclim.org/) using the
 climate data influences the growth of the species, adding a layer of
 complexity to the simulation.
 
-The data is derived from [WorldClim 2.1](https://worldclim.org/)
-historical monthly weather data series (1951-2024) ([Fick & Hijmans,
+The data comes from [WorldClim 2.1](https://worldclim.org/) *Historical
+Monthly Weather Data* series (1951-2024) ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)) for a selected region of the
-Amazon forest. This data can be reproduced using the Quarto notebooks in
-the `qmd` folder of this repository, which are adapted from the
-notebooks provided by the
-[`LogoClim`](https://github.com/sustentarea/logoclim) model.
+**Amazon forest**. The variables include *average minimum temperature
+(°C)* (**A**), *average maximum temperature (°C)* (**B**), and *total
+precipitation (mm)* (**C**). The data can be reproduced with the Quarto
+notebooks in the `qmd` folder of this repository, adapted from those
+provided by the [`LogoClim`](https://github.com/sustentarea/logoclim)
+model.
+
+![WorldClim Animation](images/worldclim-animation.gif)
+
+Refer to the `Info` tab in the model for additional details.
 
 ## How to Use It
 
@@ -86,8 +92,8 @@ Refer to the `Info` tab in the model for additional details.
 
 To cite `Logônia` please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Netlogia
-brasiliensis growth response model* \[Computer software\].
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}:
+Netlogia brasiliensis growth response model* \[Computer software\].
 <https://doi.org/10.17605/OSF.IO/>
 
 A BibTeX entry for LaTeX users is:
