@@ -4,18 +4,26 @@
 ;   inspect-prec
 ; ]
 
-to-report check-inspection
-  let test (sentence inspect-tmin inspect-tmax inspect-prec)
+to-report test-inspection
+  let #test (sentence inspect-tmin inspect-tmax inspect-prec)
 
-  ifelse ((length filter [i -> i = true] test) > 1) [
-    user-message "Please select only one climate variable to inspect."
-
+  ifelse ((length filter [i -> i = true] #test) > 1) [
     report false
   ] [
-    if ((length filter [i -> i = true] test) = 1) [
-      set inspection true
-    ]
-
     report true
+  ]
+end
+
+to-report check-inspection
+  ifelse (test-inspection) [
+    report true
+  ] [
+    report "Please select only one climate variable to inspect."
+  ]
+end
+
+to assert-inspection
+  if (not test-inspection) [
+    user-message check-inspection
   ]
 end

@@ -1,0 +1,19 @@
+to update-moving-average
+  let #young-count count logonias with [shape = "young"]
+  let #maturing-count count logonias with [shape = "maturing"]
+  let #adult-count count logonias with [shape = "adult"]
+
+  (ifelse (index = 0) [
+    set young-12 (list #young-count)
+    set maturing-12 (list #maturing-count)
+    set adult-12 (list #adult-count)
+  ] (index >= 11) [
+    set young-12 but-first (lput #young-count young-12)
+    set maturing-12 but-first (lput #maturing-count maturing-12)
+    set adult-12 but-first (lput #adult-count adult-12)
+  ] [
+    set young-12 lput #young-count young-12
+    set maturing-12 lput #maturing-count maturing-12
+    set adult-12 lput #adult-count adult-12
+  ])
+end

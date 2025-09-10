@@ -20,6 +20,14 @@ to setup-variables
 
   set plot-x-max-range 2 ; ticks + 1
 
+  let #test (sentence inspect-tmin inspect-tmax inspect-prec)
+  
+  ifelse ((length filter [i -> i = true] #test) > 0) [
+    set inspection true
+  ] [
+    set inspection false
+  ]
+  
   set settings (list
     initial-logonias
     reproduction-rate

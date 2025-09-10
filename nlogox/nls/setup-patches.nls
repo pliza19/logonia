@@ -20,6 +20,15 @@ to setup-patches
       set longitude mean (
         [[longitude] of patch (first #i) (last #i)] ls:of tmin-ls-model
       )
+
+      set tmin-12 (list tmin)
+      set tmin-12ma "NA"
+      
+      set tmax-12 (list tmax) 
+      set tmax-12ma "NA"
+      
+      set prec-12 (list prec)
+      set prec-12ma "NA"
     ]
   ]
 end

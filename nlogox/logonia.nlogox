@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model version="NetLogo 7.0.0-beta2" snapToGrid="true">
+<model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo
 ;
-; Version: 2025-09-09 0.0.0.9003
+; Version: 2025-09-09 0.0.0.9004
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -16,6 +16,7 @@
 __includes [
   "nls/logistic-regression.nls"
   "nls/random-between.nls"
+  "nls/update-moving-average.nls"
   "nls/check-inspection.nls" ; {LogoClim}
   "nls/check-nan.nls" ; {LogoClim}
   "nls/check-start-year.nls" ; {LogoClim}
@@ -25,6 +26,7 @@ __includes [
   "nls/setup-patches.nls" ; {LogoClim}
   "nls/setup-variables.nls" ; {LogoClim}
   "nls/setup-world.nls" ; {LogoClim}
+  "nls/show-values.nls" ; {LogoClim}
   "nls/update-climate-vars.nls" ; {LogoClim}
 ]
 
@@ -34,6 +36,9 @@ extensions [
 ]
 
 globals [
+  young-12
+  maturing-12
+  adult-12
   plot-x-max-range
   index ; {LogoClim}
   month ; {LogoClim}
@@ -51,8 +56,14 @@ breed [logonias logonia]
 patches-own [
   probability
   tmin ; {LogoClim}
+  tmin-12 ; {LogoClim}
+  tmin-12ma ; {LogoClim}
   tmax ; {LogoClim}
+  tmax-12 ; {LogoClim}
+  tmax-12ma ; {LogoClim}
   prec ; {LogoClim}
+  prec-12 ; {LogoClim}
+  prec-12ma ; {LogoClim}
   latitude ; {LogoClim}
   longitude ; {LogoClim}
 ]
@@ -66,9 +77,12 @@ logonias-own [
 to setup
   clear-all
 
+  assert-start-year
+  assert-inspection
+  
   if (
-    (check-start-year = false) or ; {LogoClim}
-    (check-inspection = false) ; {LogoClim}
+    (test-start-year = false) or ; {LogoClim}
+    (test-inspection = false) ; {LogoClim}
   ) [
     stop
   ]
@@ -126,6 +140,8 @@ to setup
       ask patch-here [set pcolor brown + 3]
       set ycor ycor + 1
     ]
+    
+    update-moving-average
   ]
 
   reset-ticks
@@ -162,7 +178,9 @@ to go
         die
       ]
     ]
-
+    
+    update-moving-average
+    
     if (not any? logonias) [stop]
   ]
 
@@ -238,7 +256,7 @@ to colorize
   ])
 end]]></code>
   <widgets>
-    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="552" showTickCounter="true" patchSize="12.27450980392157" fontSize="14" wrappingAllowedY="true" width="625" tickCounterLabel="ticks" maxPycor="22" updateMode="0" maxPxcor="25" minPxcor="-25"></view>
+    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="552" showTickCounter="true" patchSize="12.27450980392157" fontSize="14" wrappingAllowedY="true" width="626" tickCounterLabel="Months" maxPycor="22" updateMode="0" maxPxcor="25" minPxcor="-25"></view>
     <monitor x="905" precision="0" y="10" height="60" fontSize="11" width="250" display="Data Series">ifelse-value
   ((settings = 0))
   ["NA"]
@@ -251,39 +269,6 @@ end]]></code>
   ((settings = 0))
   ["NA"]
   [year]</monitor>
-    <plot x="905" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="75" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Logônias">
-      <setup></setup>
-      <update>ifelse (inspection = true) [
-  clear-plot
-] [
-  set-plot-x-range 0 plot-x-max-range
-]</update>
-      <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
-        <setup></setup>
-        <update>ifelse ((start-month = month) or (index = 1)) [
-  set-plot-pen-color black
-] [
-  set-plot-pen-color white
-]
-
-plot 1</update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Young" color="-13840069" legend="true">
-        <setup></setup>
-        <update>plot count logonias with [shape = "young"]</update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Maturing" color="-8092645" legend="true">
-        <setup></setup>
-        <update>plot count logonias with [shape = "maturing"]</update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Adult" color="-10402772" legend="true">
-        <setup></setup>
-        <update>plot count logonias with [shape = "adult"]</update>
-      </pen>
-    </plot>
-    <monitor x="1075" precision="0" y="320" height="60" fontSize="11" width="165" display="Maturing">count logonias with [phase = "maturing"]</monitor>
-    <monitor x="1245" precision="0" y="320" height="60" fontSize="11" width="165" display="Adult">count logonias with [phase = "adult"]</monitor>
-    <monitor x="905" precision="0" y="320" height="60" fontSize="11" width="165" display="Young">count logonias with [phase = "young"]</monitor>
     <button x="140" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
     <chooser x="10" y="55" height="60" variable="start-month" current="0" width="250" display="start-month">
       <choice type="string" value="January"></choice>
@@ -308,7 +293,7 @@ plot 1</update>
     <slider x="10" step="1" y="185" max="100" width="250" display="initial-logonias" height="50" min="0" direction="Horizontal" default="30.0" variable="initial-logonias"></slider>
     <input x="10" multiline="false" y="120" height="60" variable="start-year" type="number" width="250">1951.0</input>
     <button x="10" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
-    <plot x="905" autoPlotX="false" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="385" xMin="0.0" height="180" legend="false" xMax="1.0" yMin="0.0" width="400" xAxis="Probability" display="Growth Prob.">
+    <plot x="905" autoPlotX="false" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="445" xMin="0.0" height="120" legend="false" xMax="1.0" yMin="0.0" width="400" xAxis="Probability" display="Growth Prob.">
       <setup></setup>
       <update></update>
       <pen interval="0.1" mode="1" display="Growth Prob." color="-16777216" legend="true">
@@ -320,8 +305,71 @@ plot 1</update>
 ]</update>
       </pen>
     </plot>
-    <monitor x="1310" precision="5" y="385" height="180" fontSize="11" width="100" display="Mean Growth P.">mean [probability] of patches with [not is-nan? tmin]</monitor>
-    <plot x="715" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Mean" y="740" xMin="0.0" height="240" legend="false" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Precipitation">
+    <monitor x="1310" precision="5" y="445" height="120" fontSize="11" width="100" display="Mean G. P.">mean [probability] of patches with [not is-nan? tmin]</monitor>
+    <monitor x="905" precision="0" y="380" height="60" fontSize="11" width="165" display="Young">count logonias with [phase = "young"]</monitor>
+    <monitor x="1075" precision="0" y="380" height="60" fontSize="11" width="165" display="Maturing">count logonias with [phase = "maturing"]</monitor>
+    <monitor x="1245" precision="0" y="380" height="60" fontSize="11" width="165" display="Adult">count logonias with [phase = "adult"]</monitor>
+    <plot x="905" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Frequency" y="75" xMin="0.0" height="300" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Logônias">
+      <setup></setup>
+      <update>ifelse (inspection = true) [
+  clear-plot
+] [
+  set-plot-x-range 0 plot-x-max-range
+]</update>
+      <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month) or (index = 1)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot 1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Young" color="-2754856" legend="true">
+        <setup></setup>
+        <update>plot count logonias with [shape = "young"]</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Young 12MA" color="-13840069" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color lime
+  plot mean young-12
+] [
+  set-plot-pen-color lime + 4
+  plot count logonias with [shape = "young"]
+]]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Maturing" color="-263210" legend="true">
+        <setup></setup>
+        <update>plot count logonias with [shape = "maturing"]</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Maturing 12MA" color="-7171555" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color yellow - 2
+  plot mean maturing-12
+] [
+  set-plot-pen-color yellow + 4
+  plot count logonias with [shape = "maturing"]
+]]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Adult" color="-1318182" legend="true">
+        <setup></setup>
+        <update>plot count logonias with [shape = "adult"]</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Adult 12MA" color="-6459832" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color brown
+  plot mean adult-12
+] [
+  set-plot-pen-color brown + 4
+  plot count logonias with [shape = "adult"]
+]]]></update>
+      </pen>
+    </plot>
+    <plot x="715" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Precipitation">
       <setup></setup>
       <update>set-plot-x-range 0 plot-x-max-range</update>
       <pen interval="1.0" mode="0" display="(Year Indicator)" color="-16777216" legend="false">
@@ -334,17 +382,27 @@ plot 1</update>
 
 plot 1</update>
       </pen>
-      <pen interval="1.0" mode="0" display="Precipitation" color="-16777216" legend="true">
+      <pen interval="1.0" mode="0" display="Precipitation" color="-1513240" legend="true">
         <setup></setup>
         <update>plot mean [prec] of patches with [not is-nan? prec]</update>
       </pen>
+      <pen interval="1.0" mode="0" display="Prec. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot mean [prec-12ma] of patches with [not is-nan? prec]
+] [
+  set-plot-pen-color gray + 4
+  plot mean [prec] of patches with [not is-nan? prec]
+]]]></update>
+      </pen>
     </plot>
-    <monitor x="715" precision="5" y="675" height="60" fontSize="11" width="165" display="Mean T. Min.">mean [tmin] of patches with [not is-nan? tmin]</monitor>
-    <monitor x="885" precision="5" y="675" height="60" fontSize="11" width="160" display="Mean T. Max.">mean [tmax] of patches with [not is-nan? tmax]</monitor>
+    <button x="205" y="675" height="60" disableUntilTicks="false" forever="true" kind="Observer" width="135" display="Show Values">show-values</button>
+    <switch x="345" y="675" height="60" on="false" variable="inspect-tmin" width="120" display="inspect-tmin"></switch>
+    <switch x="470" y="675" height="60" on="false" variable="inspect-tmax" width="120" display="inspect-tmax"></switch>
+    <switch x="595" y="675" height="60" on="false" variable="inspect-prec" width="115" display="inspect-prec"></switch>
     <note x="10" y="640" backgroundDark="0" fontSize="15" width="1400" markdown="true" height="26" textColorDark="-1" textColorLight="-16777216" backgroundLight="0"><![CDATA[<div style="text-align: center;">Climate Variables Inspection</div>]]></note>
-    <switch x="380" y="675" height="60" on="false" variable="inspect-tmax" width="165" display="inspect-tmax"></switch>
-    <switch x="550" y="675" height="60" on="false" variable="inspect-prec" width="160" display="inspect-prec"></switch>
-    <switch x="205" y="675" height="60" on="false" variable="inspect-tmin" width="170" display="inspect-tmin"></switch>
+    <monitor x="1050" precision="5" y="675" height="60" fontSize="11" width="170" display="Mean Prec.">mean [prec] of patches with [not is-nan? prec]</monitor>
     <plot x="205" autoPlotX="true" yMax="40.0" autoPlotY="true" yAxis="Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="15.0" width="505" xAxis="Months" display="Temperature">
       <setup></setup>
       <update>set-plot-x-range 0 plot-x-max-range</update>
@@ -358,16 +416,37 @@ plot 1</update>
 
 plot 16</update>
       </pen>
-      <pen interval="1.0" mode="0" display="Minimum" color="-7500403" legend="true">
+      <pen interval="1.0" mode="0" display="Minimum" color="-2166824" legend="true">
         <setup></setup>
         <update>plot mean [tmin] of patches with [not is-nan? tmin]</update>
       </pen>
-      <pen interval="1.0" mode="0" display="Maximum" color="-16777216" legend="true">
+      <pen interval="1.0" mode="0" display="Min. 12MA" color="-13840069" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color lime
+  plot mean [tmin-12ma] of patches with [not is-nan? tmin]
+] [
+  set-plot-pen-color lime + 4
+  plot mean [tmin] of patches with [not is-nan? tmin]
+]]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Maximum" color="-1318182" legend="true">
         <setup></setup>
         <update>plot mean [tmax] of patches with [not is-nan? tmax]</update>
       </pen>
+      <pen interval="1.0" mode="0" display="Max. 12MA" color="-6459832" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color brown
+  plot mean [tmax-12ma] of patches with [not is-nan? tmax]
+] [
+  set-plot-pen-color brown + 4
+  plot mean [tmax] of patches with [not is-nan? tmax]
+]]]></update>
+      </pen>
     </plot>
-    <monitor x="1050" precision="5" y="675" height="60" fontSize="11" width="170" display="Mean Prec.">mean [prec] of patches with [not is-nan? prec]</monitor>
+    <monitor x="885" precision="5" y="675" height="60" fontSize="11" width="160" display="Mean T. Max.">mean [tmax] of patches with [not is-nan? tmax]</monitor>
+    <monitor x="715" precision="5" y="675" height="60" fontSize="11" width="165" display="Mean T. Min.">mean [tmin] of patches with [not is-nan? tmin]</monitor>
   </widgets>
   <info><![CDATA[> Development version.]]></info>
   <turtleShapes>

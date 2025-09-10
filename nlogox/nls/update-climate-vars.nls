@@ -7,6 +7,21 @@ to update-climate-vars
       set tmin [[value] of patch (first #i) (last #i)] ls:of tmin-ls-model
       set tmax [[value] of patch (first #i) (last #i)] ls:of tmax-ls-model
       set prec [[value] of patch (first #i) (last #i)] ls:of prec-ls-model
+
+      ifelse (index >= 11) [
+        set tmin-12 but-first (lput tmin tmin-12)
+        set tmin-12ma mean tmin-12
+        
+        set tmax-12 but-first (lput tmax tmax-12)
+        set tmax-12ma mean tmax-12
+        
+        set prec-12 but-first (lput prec prec-12)
+        set prec-12ma mean prec-12
+      ] [
+        set tmin-12 lput tmin tmin-12
+        set tmax-12 lput tmax tmax-12
+        set prec-12 lput prec prec-12
+      ]
     ]
   ]
 end
