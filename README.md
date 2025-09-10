@@ -26,7 +26,7 @@ extension.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logonia)](https://github.com/sustentarea/Logônia/)
 
-![Logônia Interface](images/logonia-interface.png)
+![Logônia Interface](images/logonia-interface.gif)
 
 ## How It Works
 
