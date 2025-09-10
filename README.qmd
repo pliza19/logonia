@@ -27,12 +27,12 @@ cat(
   #     ""
   #   )
   # ),
-  # badger::badge_custom(
-  #   x = "OSF DOI",
-  #   y = "10.17605/OSF.IO/",
-  #   color = "1284C5",
-  #   url = "https://doi.org/10.17605/OSF.IO/"
-  # ),
+  badger::badge_custom(
+    x = "OSF DOI",
+    y = "10.17605/OSF.IO/TPY7S",
+    color = "1284C5",
+    url = "https://doi.org/10.17605/OSF.IO/TPY7S"
+  ),
   # paste0(
   #   "[![",
   #   "FAIR checklist badge",
@@ -116,7 +116,7 @@ Refer to the `Info` tab in the model for additional details.
 
 To cite `Logônia` please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Netlogia brasiliensis growth response model* \[Computer software\]. <https://doi.org/10.17605/OSF.IO/>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Netlogia brasiliensis growth response model* \[Computer software\]. <https://doi.org/10.17605/OSF.IO/TPY7S>
 
 A BibTeX entry for LaTeX users is:
 
@@ -125,7 +125,7 @@ A BibTeX entry for LaTeX users is:
   title = {{Logônia}: <span class="italic">Netlogia brasiliensis</span> growth response model},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
-  doi = {10.17605/OSF.IO/},
+  doi = {10.17605/OSF.IO/TPY7S},
   note = {Computer software}
 }
 ```

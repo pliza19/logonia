@@ -6,6 +6,7 @@
 [![Project Status: WIP - Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/TPY7S-1284C5.svg)](https://doi.org/10.17605/OSF.IO/TPY7S)
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!-- badges: end -->
@@ -94,7 +95,7 @@ To cite `Logônia` please use the following format:
 
 Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}:
 Netlogia brasiliensis growth response model* \[Computer software\].
-<https://doi.org/10.17605/OSF.IO/>
+<https://doi.org/10.17605/OSF.IO/TPY7S>
 
 A BibTeX entry for LaTeX users is:
 
@@ -103,7 +104,7 @@ A BibTeX entry for LaTeX users is:
   title = {{Logônia}: <span class="italic">Netlogia brasiliensis</span> growth response model},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
-  doi = {10.17605/OSF.IO/},
+  doi = {10.17605/OSF.IO/TPY7S},
   note = {Computer software}
 }
 ```

@@ -39,9 +39,8 @@ keywords:
   - WorldClim
 identifiers:
   - type: doi
-    value: 10.17605/OSF.IO/
+    value: 10.17605/OSF.IO/TPY7S
     description: OSF Research Compendium
 repository-code: 'https://github.com/sustentarea/logonia'
-repository: 'https://doi.org/10.17605/OSF.IO/'
-repository-artifact: 'https://doi.org/10.17605/OSF.IO/'
+repository: 'https://doi.org/10.17605/OSF.IO/TPY7S'
 license: GPLv3

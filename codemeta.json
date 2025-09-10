@@ -94,10 +94,7 @@
   "license": "https://www.gnu.org/licenses/gpl-3.0",
   "codeRepository": "https://github.com/sustentarea/logonia",
   "issueTracker": "https://github.com/sustentarea/logonia/issues",
-  "relatedLink": [
-    "https://doi.org/10.17605/OSF.IO/",
-    "https://doi.org/10.17605/OSF.IO/"
-  ],
+  "relatedLink": "https://doi.org/10.17605/OSF.IO/TPY7S",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "NetLogo",
