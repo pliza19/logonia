@@ -40,7 +40,7 @@ plot_sigmoid <- function(
     labs(
       x = "Intercept",
       y = "Probability",
-      subtitle = str_glue(
+      subtitle = glue(
         "Coefficients: ",
         "tmin = {coefficients['tmin']}", ", ",
         "tmax = {coefficients['tmax']}", ", ",

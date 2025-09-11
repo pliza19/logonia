@@ -1,4 +1,4 @@
-# Logônia <img src = "images/logo.png" align="right" width="120" />
+# Logônia <img src="images/logo.png" align="right" width="120" />
 
 <!-- Quarto render -->
 
@@ -69,37 +69,55 @@ cat(
 
 ## Overview
 
-`Logônia` is a [NetLogo](https://www.netlogo.org) model for simulating the growth response of a fictional plant species named Logônia (*netlogia brasiliensis*) to different climatic conditions. The model incorporates climate data from [WorldClim 2.1](https://worldclim.org/) and serves as fun example on how to integrate the [`LogoClim`](https://github.com/sustentarea/logoclim) model into other NetLogo models using the NetLogo [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
+`Logônia` is a [NetLogo](https://www.netlogo.org) model for simulating the growth response of a fictional plant named Logônia (*netlogia brasiliensis*) to different climatic conditions. The model incorporates climate data from [WorldClim 2.1](https://worldclim.org/) and serves as fun example on how to integrate the [`LogoClim`](https://github.com/sustentarea/logoclim) model into other NetLogo models using the NetLogo [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
 
 > If you find this project useful, please consider giving it a star! [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logonia)](https://github.com/sustentarea/Logônia/)
 
-![Logônia Interface](images/logonia-interface.gif)
+```{=html}
+<p align="center">
+  <img src="images/logonia-interface.gif" />
+</p>
+```
 
 ## How It Works
 
-`Logônia` operates on a grid of patches, where each patch represents the soil in which the logônia plant species grow. Each patch corresponds to a specific geographic area and stores historical values of different climate variables.
+`Logônia` runs on a grid of patches, where each patch represents a piece of soil that can host a logônia plant. Each patch corresponds to a specific geographic area and stores historical climate data.
 
-![Logônia Sizes](images/logonia-sizes.svg)
+A logônia plant develops through three growth phases: *seedling*, *juvenile*, and *adult*. Each phase has a distinct shape and energy levels. Plant growth, reproduction, and senescence (shown by color fading) are influenced by the climate conditions of the patch it occupies.
 
-The model was created to serve as an example of integration of climate data from [WorldClim 2.1](https://worldclim.org/) using the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The climate data influences the growth of the species, adding a layer of complexity to the simulation.
+```{=html}
+<p align="center">
+  <img src="images/logonia-sizes.svg" width=80% />
+</p>
+```
 
-The data comes from [WorldClim 2.1](https://worldclim.org/) *Historical Monthly Weather Data* series (1951-2024) ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)) for a selected region of the **Amazon forest**. The variables include *average minimum temperature (°C)* (**A**), *average maximum temperature (°C)* (**B**), and *total precipitation (mm)* (**C**). The data can be reproduced with the Quarto notebooks in the `qmd` folder of this repository, adapted from those provided by the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
+Once a logônia reaches the adult phase, it can reproduce asexually by establishing new plants in unoccupied patches. The probability of growth is determined by a [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression) model that incorporates the patch’s climate variables. If conditions are favorable, the plant gains energy and grows; otherwise, it may remain the same or lose energy, eventually dying. Plants die either when they run out of energy or when they reach their maximum age (100 months).
 
-![WorldClim Animation](images/worldclim-animation.gif)
+### Climate Data
+
+This model illustrates how climate data from [WorldClim 2.1](https://worldclim.org/) can be integrated into NetLogo through the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. Climate conditions directly affect species growth, adding complexity to the simulation.
+
+The dataset comes from the *Historical Monthly Weather Data* series of [WorldClim 2.1](https://worldclim.org/) (1951-2024) ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)) for a selected region of the **Amazon forest**. This series includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) ([Harris et al., 2020](https://doi.org/10.1038/s41597-020-0453-3)). Variables include *average minimum temperature (°C)* (**A**), *average maximum temperature (°C)* (**B**), and *total precipitation (mm)* (**C**).
+
+```{=html}
+<p align="center">
+  <img src="images/worldclim-animation.gif" />
+</p>
+```
+
+The dataset can be reproduced using the Quarto notebooks in the `qmd` folder of this repository, adapted from those of the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
 
 Refer to the `Info` tab in the model for additional details.
 
 ## How to Use It
 
-### Setup
-
 To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
 
-The model relies on the `LevelSpace` ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String` ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extension, these are automatically installed when the model is run for the first time.
+The model relies on the NetLogo extensions `LevelSpace` ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String` ([`string`](https://github.com/NetLogo/String-Extension)). These extensions are installed automatically when the model is run for the first time.
 
 #### Downloading the Model
 
-You can download the latest release of the model from its [GitHub Releases page](https://github.com/sustentarea/logonia/releases/latest). For the development version, you can clone or download this [GitHub repository](https://github.com/sustentarea/logonia/) directly.
+You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logonia/releases/latest). For the development version, you can clone or download this [GitHub repository](https://github.com/sustentarea/logonia/) directly.
 
 ```{=gfm}
 > [!IMPORTANT]
@@ -108,7 +126,7 @@ You can download the latest release of the model from its [GitHub Releases page]
 
 #### Running the Model
 
-Once everything is set, open the `logonia.nlogox` file located in the `nlogox` folder to start exploring!
+Once everything is set, open the `logonia.nlogox` file located in the `nlogox` folder to start exploring! No additional installation steps are required.
 
 Refer to the `Info` tab in the model for additional details.
 
@@ -145,7 +163,7 @@ cat(
 )
 ```
 
-``` text
+```text
 Copyright (C) 2025 Daniel Vartanian
 
 {Logônia} is free software: you can redistribute it and/or modify it under the
@@ -163,6 +181,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 ## Acknowledgments
 
 We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets.
+
+We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
 
 ```{r}
 #| echo: false

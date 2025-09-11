@@ -7,8 +7,8 @@ Interface snapshot settings.
 - Theme: Light
 - Screen resolution: 1920x1080
 
-- Turn off Night Light mode!
-- Resize the window (see Window Size settings)
+- **Turn off Night Light mode**!
+- Resize the window (see *Window Size* settings)
 - Only vertical scrollbar
 - Command center: closed
 - No `nls` script visible
@@ -18,12 +18,6 @@ Interface snapshot settings.
 ## Window Size
 
 Install `wmctrl` to manage windows (if not already installed).
-
-Use the following for *Ubuntu* Linux:
-
-```bash
-sudo apt-get install wmctrl
-```
 
 For *Arch* Linux or *Manjaro*:
 
@@ -49,7 +43,8 @@ wmctrl -r NetLogo -e 0,240,120,1440,726
 
 ### Sequence (by 10 years)
 
-Starting on January 1951 to December 2024.
+- Logônias: By 10 years, starting on January 1951 to December 2024 (1951-01, 1961-01, 1971-01, 1981-01, 1991-01, 2001-01, 2011-01, 2024-12).
+- Climate variables: tmin, tmax, and prec. 3 screenshots/variables (1951-01 to 1951-03).
 
 ```netlogo
 go true true
@@ -60,12 +55,6 @@ go true true
 
 Install `ImageMagick` (if not already installed) to convert the PNG files to a GIF.
 
-Use the following for *Ubuntu* Linux:
-
-```bash
-sudo apt-get install imagemagick
-```
-
 For *Arch* Linux or *Manjaro*:
 
 ```bash
@@ -75,6 +64,5 @@ sudo pacman -S imagemagick
 Use the following for the conversion:
 
 ```bash
-# sudo apt-get install imagemagick
 magick -delay 60 -loop 0 *.png output.gif
 ```
