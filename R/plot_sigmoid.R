@@ -10,14 +10,21 @@ library(here)
 library(ragg)
 
 plot_sigmoid <- function(
-  intercept_range = seq(-235, -210, by = 1),
+  intercept_range = seq(-235, -197.5, by = 1),
   coefficients = c(tmin = 0.35, tmax = 0.45, prec = 1),
-  values = c(tmin = 20, tmax = 33, prec = 200),
-  text_size = 12
+  values = c(tmin = 22.32, tmax = 31.22, prec = 194.61),
+  text_size = 12,
+  width = 600,
+  height = 400,
+  file_name = here("images", "logistic-regression-sigmoid.png")
 ) {
   assert_numeric(intercept_range)
   assert_numeric(coefficients, len = 3)
   assert_numeric(values, len = 3)
+  assert_number(text_size, lower = 8, upper = 20)
+  assert_number(width, lower = 100)
+  assert_number(height, lower = 100)
+  assert_string(file_name)
 
   prob <- numeric()
 
@@ -59,11 +66,11 @@ plot_sigmoid <- function(
     )
 
   ggsave(
-    filename = here("images", "sigmoid.png"),
+    filename = file_name,
     plot = plot,
     device = agg_png,
-    width = 600,
-    height = 400,
+    width = width,
+    height = height,
     units = "px",
     dpi = 150
   )

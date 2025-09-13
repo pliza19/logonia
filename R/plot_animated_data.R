@@ -3,6 +3,12 @@ source(here("R", "_setup.R"))
 
 # plot_animated_data()
 
+# plot_animated_data(
+#   width = 640,
+#   height = 192,
+#   file = here("images", "worldclim-animation-info-tab.gif")
+# )
+
 library(checkmate)
 library(cli)
 library(ggplot2)
@@ -10,10 +16,20 @@ library(here)
 library(magick)
 library(ragg)
 
-plot_animated_data <- function(year = 1951, months = 12, text_size = 18) {
+plot_animated_data <- function(
+    year = 1951,
+    months = 12,
+    text_size = 18,
+    width = 1000,
+    height = 300,
+    file_name = here("images", "worldclim-animation.gif")
+  ) {
   assert_number(year, lower = 1951, upper = 2024)
   assert_number(months, lower = 1, upper = 12)
   assert_number(text_size, lower = 1)
+  assert_number(width, lower = 100)
+  assert_number(height, lower = 100)
+  assert_string(file_name)
 
   files <- character()
 
@@ -25,8 +41,8 @@ plot_animated_data <- function(year = 1951, months = 12, text_size = 18) {
       filename = i_file,
       plot = i_plot,
       device = agg_png,
-      width = 1000,
-      height = 300,
+      width = width,
+      height = height,
       units = "px",
       dpi = 150,
     )
@@ -40,7 +56,7 @@ plot_animated_data <- function(year = 1951, months = 12, text_size = 18) {
     image_join() |>
     image_animate(fps = 1)
 
-  animation |> image_write(here("images", "worldclim-animation.gif"))
+  animation |> image_write(file_name)
 
   invisible(animation)
 }

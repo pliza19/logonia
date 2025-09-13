@@ -1,11 +1,11 @@
 {
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
-  "identifier": "Logônia",
+  "identifier": "logonia",
   "dateCreated": "2025-09-02",
   "applicationCategory": "Agent-Based Modeling",
   "applicationSubCategory": "Plant Growth Modeling",
-  "name": "{Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo",
+  "name": "{Logônia}: Plant Growth Response Model in NetLogo",
   "author": [
     {
       "@type": "Person",
@@ -67,28 +67,33 @@
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "hi@sustentarea.com",
+    "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
   "maintainer": {
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "hi@sustentarea.com",
+    "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
-  "description": "{Logônia} is a NetLogo model for simulating the growth response of a fictional plant species named Logônia (*Netlogia brasiliensis*) to different climatic conditions. The model incorporates climate data from WorldClim 2.1 and serves as fun example on how to integrate the {LogoClim} model into other NetLogo models using the NetLogo {LevelSpace} extension.",
+  "description": "{Logônia} is a NetLogo model that simulates the growth response of a fictional plant, logônia, under different climatic conditions. The model uses climate data from WorldClim 2.1 and demonstrates how to integrate the {LogoClim} model through the {LevelSpace} extension.",
   "keywords": [
     "Agent-Based Modeling",
-    "Artificial Life",
+    "Climate Change",
+    "Climate Simulation",
     "Complex Systems",
     "Complexity Science",
+    "Environmental Sciences",
+    "Historical Climate Data",
     "LevelSpace",
+    "LogoClim",
     "Models",
     "NetLogo",
     "Plant Growth",
     "Population Dynamics",
     "Simulations",
+    "Time Series",
     "WorldClim"
   ],
   "license": "https://www.gnu.org/licenses/gpl-3.0",
@@ -118,11 +123,11 @@
         "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
         "url": "https://www.netlogo.org"
       },
-      "sameAs": "https://www.netlogo.orgdownload.shtml"
+      "sameAs": "https://www.netlogo.org"
     },
     {
       "name": "NetLogo LevelSpace extension",
-      "version": ">= 2.4.0",
+      "version": ">= 2.4.2",
       "provider": {
         "@id": "https://www.netlogo.org",
         "@type": "Organization",
@@ -143,8 +148,10 @@
       "sameAs": "https://github.com/NetLogo/String-Extension/"
     }
   ],
-  "developmentStatus": "WIP",
-  "readme": "https://github.com/sustentarea/Logônia/blob/main/README.md",
-  "releaseNotes": "https://github.com/sustentarea/Logônia/blob/main/NEWS.md",
-  "version": "0.0.0.9005"
+  "developmentStatus": "active",
+  "readme": "https://github.com/sustentarea/logonia/blob/main/README.md",
+  "releaseNotes": "https://github.com/sustentarea/logonia/blob/main/NEWS.md",
+  "version": "1.0.0",
+  "datePublished":"2025-09-13",
+   "downloadUrl": "https://github.com/sustentarea/logonia/archive/refs/tags/v0.1.0.zip"
 }

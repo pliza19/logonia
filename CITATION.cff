@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "{Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo"
+title: "{Logônia}: Plant Growth Response Model in NetLogo"
 message: >-
   If you use this software, please cite it using the metadata from this file.
 type: software
@@ -21,21 +21,25 @@ authors:
     orcid: 'https://orcid.org/0000-0002-4900-5609'
 abstract: >-
   {Logônia} is a NetLogo model that simulates the growth response of a fictional
-  plant species, Logônia (*Netlogia brasiliensis*), under varying climatic
-  conditions. The model integrates climate data from WorldClim 2.1 and
-  demonstrates how to incorporate the {LogoClim} model into other NetLogo
-  projects using the {LevelSpace} extension.
+  plant, logônia, under different climatic conditions. The model uses climate
+  data from WorldClim 2.1 and demonstrates how to integrate the {LogoClim} model
+  through the {LevelSpace} extension.
 keywords:
   - Agent-Based Modeling
-  - Artificial Life
+  - Climate Change
+  - Climate Simulation
   - Complex Systems
   - Complexity Science
+  - Environmental Sciences
+  - Historical Climate Data
   - LevelSpace
+  - LogoClim
   - Models
   - NetLogo
   - Plant Growth
   - Population Dynamics
   - Simulations
+  - Time Series
   - WorldClim
 identifiers:
   - type: doi
