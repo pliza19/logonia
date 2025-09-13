@@ -19,10 +19,8 @@ to setup-variables
   set year [year] ls:of tmin-ls-model
 
   set plot-x-max-range 2 ; ticks + 1
-
-  let #test (sentence inspect-tmin inspect-tmax inspect-prec)
   
-  ifelse ((length filter [i -> i = true] #test) > 0) [
+  ifelse (any-inspection? = true) [
     set inspection true
   ] [
     set inspection false

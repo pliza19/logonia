@@ -27,3 +27,13 @@ to assert-inspection
     user-message check-inspection
   ]
 end
+
+to-report any-inspection?
+  let #test (sentence inspect-tmin inspect-tmax inspect-prec)
+  
+  ifelse ((length filter [i -> i = true] #test) > 0) [
+    report true
+  ] [
+    report false
+  ]
+end

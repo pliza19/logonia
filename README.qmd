@@ -135,16 +135,16 @@ As a *seedling*, the logônia can only grow and age. Once it accumulates `10` en
 
 As a *juvenile*, it continues to grow and age. When it reaches `30` energy points, it advances to its final stage: an *adult*.
 
-As an *adult*, the logônia can now reproduce, while aging.
+As an *adult*, the logônia gains the ability to reproduce.
 
 ### Reproduction
 
 Adult plants can reproduce asexually by randomly colonizing unoccupied patches:
 
-- If an adult has at least `30` energy points, and a random number between `0` and `1` is *less than* or *equal to* the `reproduction-rate`, a new seedling is created with `0` age and `1` point of energy.
-- If the chosen patch is already occupied, the seedling dies immediately.
+- If an adult has at least `30` energy points, and a random number between `0` and `1` is *less than* or *equal to* the `reproduction-rate`, a new seedling is created in a randomly selected patch with `0` age and `1` point of energy.
+- If the selected patch is already occupied, the seedling dies immediately.
 
-When a logônia occupy a patch, the patch color changes to brown to indicate it was taken.
+When a logônia occupy a patch, the patch color changes to brown to indicate it was once taken.
 
 ### Senescence
 
