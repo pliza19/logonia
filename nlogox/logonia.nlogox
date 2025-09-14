@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model version="NetLogo 7.0.0" snapToGrid="true">
-  <code><![CDATA[; {Logônia}: Netlogia Brasiliensis Growth Response Model in NetLogo
+  <code><![CDATA[; {Logônia}: Plant Growth Response Model in NetLogo
 ;
-; Version: 2025-09-13 1.0.1
+; Version: 2025-09-13 1.0.0.9000
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
