@@ -4,7 +4,7 @@ to-report logistic-regression [#tmin #tmax #prec]
     (is-nan? #tmax) or
     (is-nan? #prec)
   ) [
-    report 0
+    report "NA"
   ] [
     let #linear-predictor (
       intercept +
@@ -14,68 +14,5 @@ to-report logistic-regression [#tmin #tmax #prec]
     )
 
     report (1 / (1 + exp(- #linear-predictor)))
-  ]
-end
-
-to-report compute-growth-probability [#patch]
-  let #tmin [tmin] of #patch
-  let #tmax [tmax] of #patch
-  let #prec [prec] of #patch
-
-  report logistic-regression #tmin #tmax #prec
-end
-
-to plot-sigmoid
-  if (min-x >= max-x) [set max-x min-x + 1]
-  if (max-x <= min-x) [set min-x max-x - 1]
-
-  let #var ""
-  let #step-size 0.1
-  let #current-x min-x
-  let #linear-predictor 0
-  let #prob 0
-
-  let #intercept intercept
-  let #tmin inspection-tmin
-  let #tmax inspection-tmax
-  let #prec inspection-prec
-
-  (ifelse (x-axis = "Intercept") [
-    set #intercept #current-x
-  ] (x-axis = "Average Minimum Temperature (°C)") [
-    set #tmin #current-x
-  ] (x-axis = "Average Maximum Temperature (°C)") [
-    set #tmax #current-x
-  ] (x-axis = "Total Precipitation (mm)") [
-    set #prec #current-x
-  ])
-
-  set-current-plot "Sigmoid"
-  clear-plot
-  set-plot-x-range min-x max-x
-
-  while [#current-x <= max-x] [
-    set #linear-predictor (
-      #intercept +
-      beta-tmin * #tmin +
-      beta-tmax * #tmax +
-      beta-prec * #prec
-    )
-
-    set #prob (1 / (1 + exp(- #linear-predictor)))
-
-    plotxy #current-x #prob
-
-    set #current-x (#current-x + #step-size)
-
-    (ifelse (x-axis = "Intercept") [
-      set #intercept #current-x
-    ] (x-axis = "Average Minimum Temperature (°C)") [
-      set #tmin #current-x
-    ] (x-axis = "Average Maximum Temperature (°C)") [
-      set #tmax #current-x
-    ] (x-axis = "Total Precipitation (mm)") [
-      set #prec #current-x
-    ])
   ]
 end

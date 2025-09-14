@@ -1,0 +1,10 @@
+; __includes ["nls/logistic-regression.nls"]
+; patches-own [tmin tmax prec ]
+
+to-report compute-growth-probability [#patch]
+  let #tmin [tmin] of #patch
+  let #tmax [tmax] of #patch
+  let #prec [prec] of #patch
+
+  report logistic-regression #tmin #tmax #prec
+end

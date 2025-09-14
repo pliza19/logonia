@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {Logônia}: Plant Growth Response Model in NetLogo
 ;
-; Version: 2025-09-13 1.0.0.9000
+; Version: 2025-09-14 1.0.0.9000
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -14,7 +14,9 @@
 ; Lines marked with `{LogoClim}` refer to code related to the {LogoClim} model.
 
 __includes [
+  "nls/compute-growth-probability.nls"
   "nls/logistic-regression.nls"
+  "nls/plot-sigmoid.nls"
   "nls/random-between.nls"
   "nls/update-moving-average.nls"
   "nls/check-inspection.nls" ; {LogoClim}
@@ -39,7 +41,7 @@ globals [
   seedling-12
   juvenile-12
   adult-12
-  plot-x-max-range
+  max-plot-x
   index ; {LogoClim}
   month ; {LogoClim}
   year ; {LogoClim}
@@ -54,7 +56,7 @@ globals [
 breed [logonias logonia]
 
 patches-own [
-  probability
+  growth-probability
   tmin ; {LogoClim}
   tmin-12 ; {LogoClim}
   tmin-12ma ; {LogoClim}
@@ -78,11 +80,11 @@ to setup
   clear-all
 
   assert-start-year ; {LogoClim}
-  assert-inspection
+  assert-inspection ; {LogoClim}
 
-  if (
-    (test-start-year = false) or ; {LogoClim}
-    (test-inspection = false) ; {LogoClim}
+  if ( ; {LogoClim}
+    (test-start-year = false) or
+    (test-inspection = false)
   ) [
     stop
   ]
@@ -94,12 +96,12 @@ to setup
   setup-variables ; {LogoClim}
   setup-patches ; {LogoClim}
 
-  ifelse (inspection = true) [
-    inspect-climate-vars ; {LogoClim}
+  ifelse (inspection = true) [ ; {LogoClim}
+    inspect-climate-vars
   ] [
     ask patches [
       set pcolor gray + 4
-      set probability compute-growth-probability self
+      set growth-probability compute-growth-probability self
     ]
 
     create-logonias initial-logonias [
@@ -162,7 +164,7 @@ to go
 
   update-climate-vars ; {LogoClim}
 
-  set plot-x-max-range ceiling ((ticks + 1) * 1.25)
+  set max-plot-x ceiling ((ticks + 1) * 1.25)
 
   ifelse (inspection = true) [ ; {LogoClim}
     if (not any-inspection?) or (test-inspection = false) [
@@ -174,7 +176,7 @@ to go
     inspect-climate-vars
   ] [
     ask patches [
-      set probability compute-growth-probability self
+      set growth-probability compute-growth-probability self
     ]
 
     ask logonias [
@@ -182,9 +184,7 @@ to go
       reproduce
       senesce
 
-      if ((energy = 0) or (age >= 100)) [
-        die
-      ]
+      if ((energy <= 0) or (age >= 100)) [die]
     ]
 
     update-moving-average
@@ -196,11 +196,11 @@ to go
 end
 
 to grow
-  let #prob-growth [probability] of patch-here
+  let #growth-probability [growth-probability] of patch-here
 
-  (ifelse (random-float 1 <= #prob-growth) [
+  (ifelse (random-float 1 <= #growth-probability) [
     set energy energy + energy-gain
-  ] (#prob-growth < 0.25) [
+  ] (#growth-probability < 0.25) [
     set energy energy - 1
   ])
 
@@ -306,7 +306,7 @@ end
       <update>ifelse (inspection = true) [
   clear-plot
 ] [
-  set-plot-x-range 0 plot-x-max-range
+  set-plot-x-range 0 max-plot-x
 ]</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
@@ -400,11 +400,11 @@ end
         <update>ifelse (inspection = true) [
   clear-plot
 ] [
-  histogram [probability] of patches
+  histogram [growth-probability] of patches with [not is-nan? tmin]
 ]</update>
       </pen>
     </plot>
-    <monitor x="1310" precision="5" y="445" height="120" fontSize="11" width="100" display="Mean G. P.">mean [probability] of patches with [not is-nan? tmin]</monitor>
+    <monitor x="1310" precision="5" y="445" height="120" fontSize="11" width="100" display="Mean G. P.">mean [growth-probability] of patches with [not is-nan? tmin]</monitor>
     <note x="10" y="640" backgroundDark="0" fontSize="15" width="1400" markdown="true" height="26" textColorDark="-1" textColorLight="-16777216" backgroundLight="0"><![CDATA[<div style="text-align: center;">Climate Variables Inspection</div>]]></note>
     <button x="205" y="675" height="60" disableUntilTicks="false" forever="true" kind="Observer" width="135" display="Show Values">show-values</button>
     <switch x="345" y="675" height="60" on="false" variable="inspect-tmin" width="120" display="inspect-tmin"></switch>
@@ -412,7 +412,7 @@ end
     <switch x="595" y="675" height="60" on="false" variable="inspect-prec" width="115" display="inspect-prec"></switch>
     <plot x="205" autoPlotX="true" yMax="40.0" autoPlotY="true" yAxis="Global Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="15.0" width="505" xAxis="Months" display="Average Temperature (°C)">
       <setup></setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <update>set-plot-x-range 0 max-plot-x</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
         <update>ifelse ((start-month = month) or (index = 1)) [
@@ -457,7 +457,7 @@ plot 16</update>
     <monitor x="1050" precision="5" y="675" height="60" fontSize="11" width="170" display="Global Mean prec (mm)">mean [prec] of patches with [not is-nan? prec]</monitor>
     <plot x="715" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Global Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Total Precipitation (mm)">
       <setup></setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <update>set-plot-x-range 0 max-plot-x</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
         <update>ifelse ((start-month = month) or (index = 1)) [

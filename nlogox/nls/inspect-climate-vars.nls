@@ -6,9 +6,11 @@
 
 to inspect-climate-vars
   if (
-    (inspect-tmin = true) or
-    (inspect-tmax = true) or
-    (inspect-prec = true) and
+    (
+      (inspect-tmin = true) or
+      (inspect-tmax = true) or
+      (inspect-prec = true)
+    ) and
     (check-inspection = true)
   ) [
     ask logonias [hide-turtle]

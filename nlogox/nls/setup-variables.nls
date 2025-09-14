@@ -18,7 +18,7 @@ to setup-variables
   set month [month] ls:of tmin-ls-model
   set year [year] ls:of tmin-ls-model
 
-  set plot-x-max-range 2 ; ticks + 1
+  set max-plot-x 2 ; When `index = 0`.
 
   ifelse (any-inspection? = true) [
     set inspection true
@@ -38,5 +38,6 @@ to setup-variables
     "10 Minutes (~340 km2 at the Equator)" ; data-resolution
     start-month
     start-year
+    inspection
   )
 end
