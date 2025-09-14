@@ -19,13 +19,13 @@ to setup-variables
   set year [year] ls:of tmin-ls-model
 
   set plot-x-max-range 2 ; ticks + 1
-  
+
   ifelse (any-inspection? = true) [
     set inspection true
   ] [
     set inspection false
   ]
-  
+
   set settings (list
     initial-logonias
     reproduction-rate
@@ -34,8 +34,8 @@ to setup-variables
     beta-tmin
     beta-tmax
     beta-prec
-    "Historical monthly weather data" ; data-series
-    "10 minutes (~340 km2 at the equator)" ; data-resolution
+    "Historical Monthly Weather Data" ; data-series
+    "10 Minutes (~340 km2 at the Equator)" ; data-resolution
     start-month
     start-year
   )

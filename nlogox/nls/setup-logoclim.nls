@@ -9,8 +9,8 @@
 to setup-logoclim
   let #logoclim-path "../logoclim/nlogox/logoclim.nlogox"
   let #data-path "../../data/"
-  let #data-series "Historical monthly weather data"
-  let #data-resolution "10 minutes (~340 km2 at the equator)"
+  let #data-series "Historical Monthly Weather Data"
+  let #data-resolution "10 Minutes (~340 km2 at the Equator)"
 
   ls:create-models 3 #logoclim-path
 
@@ -18,31 +18,31 @@ to setup-logoclim
   set tmax-ls-model 1
   set prec-ls-model 2
 
-  ls:let .data-path #data-path
-  ls:let .data-series #data-series
-  ls:let .data-resolution #data-resolution
-  ls:let .month start-month
-  ls:let .year start-year
+  ls:let $data-path #data-path
+  ls:let $data-series #data-series
+  ls:let $data-resolution #data-resolution
+  ls:let $month start-month
+  ls:let $year start-year
 
   ls:ask ls:models [
-    set data-path .data-path
-    set data-series .data-series
-    set data-resolution .data-resolution
-    set start-month .month
-    set start-year .year
+    set data-path $data-path
+    set data-series $data-series
+    set data-resolution $data-resolution
+    set start-month $month
+    set start-year $year
   ]
 
   ls:ask tmin-ls-model [
-    set climate-variable "Average minimum temperature (°C)"
+    set climate-variable "Average Minimum Temperature (°C)"
   ]
 
   ls:ask tmax-ls-model [
-    set climate-variable "Average maximum temperature (°C)"
+    set climate-variable "Average Maximum Temperature (°C)"
   ]
 
   ls:ask prec-ls-model [
-    set climate-variable "Total precipitation (mm)"
+    set climate-variable "Total Precipitation (mm)"
   ]
 
-  ls:ask ls:models [setup]
+  ls:ask ls:models [setup true]
 end

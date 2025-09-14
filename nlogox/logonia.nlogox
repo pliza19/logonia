@@ -292,7 +292,7 @@ end
     <monitor x="905" precision="0" y="10" height="60" fontSize="11" width="250" display="Data Series">ifelse-value
   ((settings = 0))
   ["NA"]
-  ["Historical monthly weather data"]</monitor>
+  ["Historical Monthly Weather Data"]</monitor>
     <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
   ((settings = 0))
   ["NA"]
