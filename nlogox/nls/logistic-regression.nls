@@ -28,18 +28,18 @@ end
 to plot-sigmoid
   if (min-x >= max-x) [set max-x min-x + 1]
   if (max-x <= min-x) [set min-x max-x - 1]
-  
+
   let #var ""
   let #step-size 0.1
   let #current-x min-x
   let #linear-predictor 0
   let #prob 0
-  
+
   let #intercept intercept
   let #tmin inspection-tmin
   let #tmax inspection-tmax
   let #prec inspection-prec
-  
+
   (ifelse (x-axis = "Intercept") [
     set #intercept #current-x
   ] (x-axis = "Average Minimum Temperature (°C)") [
@@ -49,11 +49,11 @@ to plot-sigmoid
   ] (x-axis = "Total Precipitation (mm)") [
     set #prec #current-x
   ])
-  
+
   set-current-plot "Sigmoid"
   clear-plot
   set-plot-x-range min-x max-x
-  
+
   while [#current-x <= max-x] [
     set #linear-predictor (
       #intercept +
@@ -61,13 +61,13 @@ to plot-sigmoid
       beta-tmax * #tmax +
       beta-prec * #prec
     )
-    
+
     set #prob (1 / (1 + exp(- #linear-predictor)))
 
     plotxy #current-x #prob
-    
+
     set #current-x (#current-x + #step-size)
-    
+
     (ifelse (x-axis = "Intercept") [
       set #intercept #current-x
     ] (x-axis = "Average Minimum Temperature (°C)") [
@@ -79,64 +79,3 @@ to plot-sigmoid
     ])
   ]
 end
-
-; ## Procedures to Find Statistics in a Series
-;
-; 1. Add `.min`, `.max` as global variables.
-; 2. Add `.mean-vector`, and `.mean`.
-; 3. Add `.median-vector`, and `.median`.
-; 4. Uncomment the procedures (select the code and press `Ctrl+;`).
-; 5. Call the procedure at the beginning of `go`.
-;    Example: `min-var "tmin"` and `max-var "tmin"`.
-; 6. In the *Interface* tab, uncheck *View Updates*.
-; 7. Open the *Globals Monitor* (*Tools > Globals Monitor*).
-; 8. Run the model until the end of the series.
-;
-; Obs: Remove settings after use.
-
-; globals [
-;   .min
-;   .max
-;   .mean
-;   .mean-vector
-;   .median
-;   .median-vector 
-; ]
-
-;to get-min-var [#var]
-;  let #min min [(runresult #var)] of patches with [not is-nan? (runresult #var)]
-;  
-;  if (index = 0) [set .min #min]
-;  if (#min < .min) [set .min #min]
-;end
-;
-;to get-max-var [#var]
-;  let #max max [(runresult #var)] of patches with [not is-nan? (runresult #var)]
-;  
-;  if (index = 0) [set .max #max]
-;  if (#max > .max) [set .max #max]
-;end
-;
-;to get-mean-var [#var]
-;  let #mean mean [(runresult #var)] of patches with [not is-nan? (runresult #var)]
-;  
-;  ifelse (index = 0) [
-;    set .mean-vector (list #mean)
-;  ] [
-;    set .mean-vector lput #mean .mean-vector
-;  ]
-;  
-;  set .mean mean .mean-vector
-;end
-;
-;to get-median-var [#var]
-;  let #median median [(runresult #var)] of patches with [not is-nan? (runresult #var)]
-;  
-;  ifelse (index = 0) [
-;    set .median-vector (list #median)
-;  ] [
-;    set .median-vector lput #median .median-vector
-;  ]
-;  
-;  set .median median .median-vector
-;end
