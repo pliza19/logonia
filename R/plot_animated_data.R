@@ -18,7 +18,7 @@ library(ragg)
 
 plot_animated_data <- function(
     year = 1951,
-    months = 12,
+    months = 3,
     text_size = 18,
     width = 1000,
     height = 300,
@@ -84,8 +84,8 @@ plot_data <- function(year = 1951, month = 1, text_size = 8) {
   month <- str_pad(month, width = 2, pad = "0")
 
   brazil_shape <-
-    gadm(country = "bra", level = 0, path = tempdir()) |>
-    crop(c(-73.989707948, -28.847639914, -33.746316, 5.26487779600006))
+    gadm(country = "bra", level = 0, path = here("data-raw")) |>
+    crop(c(-73.99044997, -34.793056, -33.75114991, 5.27184108))
 
   logonia_box <- c(-63.5, -55, -7.5, 0)
 
@@ -165,7 +165,7 @@ plot_brazil <- function(
     geom_spatvector(
       data = logonia_box_shape,
       color = get_brand_color("brown"),
-      fill = get_brand_color("brown"),
+      # fill = get_brand_color("brown"),
       linewidth = 0.5,
       alpha = 0.75
     ) +
@@ -203,9 +203,11 @@ plot_worldclim <- function(raster, var = "tmin", title = "A", text_size = 8) {
 
   ggplot() +
     geom_spatraster(data = raster) +
-    scale_fill_steps(
-      low = darken(color, 0.75),
-      high = color
+    scale_fill_steps2(
+      low = get_brand_color("black"),
+      mid = color,
+      high = get_brand_color("white"),
+      midpoint = raster |> as.vector() |> mean(na.rm = TRUE)
     ) +
     labs(title = title, fill = NULL) +
     theme_void() +

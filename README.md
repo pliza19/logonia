@@ -66,7 +66,7 @@ are: *Average Minimum Temperature (°C)* (**A**), *Average Maximum
 Temperature (°C)* (**B**), and *Total Precipitation (mm)* (**C**).
 
 <p align="center">
-  <img src="images/worldclim-animation.gif" height=90% />
+  <img src="images/worldclim-animation.gif" height=150px />
 </p>
 
 The dataset can be reproduced using Quarto notebooks in the `qmd` folder
@@ -131,14 +131,12 @@ indicate it was once taken.
 ### Senescence
 
 Plants age by `1` month per step. Age is shown by color, fading from
-lime to brown.
+lime to brown. They die when they reach their maximum age of `100`
+months or run out of energy.
 
 <p align="center">
   <img src="images/logonia-aging.svg" height=125px />
 </p>
-
-Plants die when they reach their maximum age of `100` months or run out
-of energy.
 
 ## How to Use It
 
