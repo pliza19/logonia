@@ -45,7 +45,7 @@ model’s interface. Climate conditions directly influence growth
 probability, adding realism and complexity to the simulation.
 
 <p align="center">
-  <img src="images/logonia-evolution.svg" height=150px />
+  <img src="images/logonia-evolution.svg" height=125px />
 </p>
 
 ### Climate Data
@@ -66,7 +66,7 @@ are: *Average Minimum Temperature (°C)* (**A**), *Average Maximum
 Temperature (°C)* (**B**), and *Total Precipitation (mm)* (**C**).
 
 <p align="center">
-  <img src="images/worldclim-animation.gif" height=100% />
+  <img src="images/worldclim-animation.gif" height=90% />
 </p>
 
 The dataset can be reproduced using Quarto notebooks in the `qmd` folder
@@ -102,7 +102,7 @@ A logônia plant develops through three phases: *seedling*, *juvenile*,
 and *adult*. Each has distinct shapes and energy thresholds.
 
 <p align="center">
-  <img src="images/logonia-shapes.svg" height=150px />
+  <img src="images/logonia-shapes.svg" height=125px />
 </p>
 
 As a *seedling*, the logônia can only grow and age. Once it accumulates
@@ -134,7 +134,7 @@ Plants age by `1` month per step. Age is shown by color, fading from
 lime to brown.
 
 <p align="center">
-  <img src="images/logonia-aging.svg" height=150px />
+  <img src="images/logonia-aging.svg" height=125px />
 </p>
 
 Plants die when they reach their maximum age of `100` months or run out

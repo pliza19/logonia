@@ -87,7 +87,7 @@ Each simulation step represents *one month*. Over time, plants *grow*, *reproduc
 
 ```{=html}
 <p align="center">
-  <img src="images/logonia-evolution.svg" height=150px />
+  <img src="images/logonia-evolution.svg" height=125px />
 </p>
 ```
 
@@ -99,7 +99,7 @@ This dataset provides 12 monthly values per year for 1951–2024, based on [down
 
 ```{=html}
 <p align="center">
-  <img src="images/worldclim-animation.gif" height=100% />
+  <img src="images/worldclim-animation.gif" height=90% />
 </p>
 ```
 
@@ -127,7 +127,7 @@ A logônia plant develops through three phases: *seedling*, *juvenile*, and *adu
 
 ```{=html}
 <p align="center">
-  <img src="images/logonia-shapes.svg" height=150px />
+  <img src="images/logonia-shapes.svg" height=125px />
 </p>
 ```
 
@@ -152,7 +152,7 @@ Plants age by `1` month per step. Age is shown by color, fading from lime to bro
 
 ```{=html}
 <p align="center">
-  <img src="images/logonia-aging.svg" height=150px />
+  <img src="images/logonia-aging.svg" height=125px />
 </p>
 ```
 
