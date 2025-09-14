@@ -111,7 +111,7 @@ As a *seedling*, the logônia can only grow and age. Once it accumulates
 As a *juvenile*, it continues to grow and age. When it reaches `30`
 energy points, it advances to its final stage: an *adult*.
 
-As an *adult*, the logônia can now reproduce, while aging.
+As an *adult*, the logônia gains the ability to reproduce.
 
 ### Reproduction
 
@@ -120,13 +120,13 @@ patches:
 
 - If an adult has at least `30` energy points, and a random number
   between `0` and `1` is *less than* or *equal to* the
-  `reproduction-rate`, a new seedling is created with `0` age and `1`
-  point of energy.
-- If the chosen patch is already occupied, the seedling dies
+  `reproduction-rate`, a new seedling is created in a randomly selected
+  patch with `0` age and `1` point of energy.
+- If the selected patch is already occupied, the seedling dies
   immediately.
 
 When a logônia occupy a patch, the patch color changes to brown to
-indicate it was taken.
+indicate it was once taken.
 
 ### Senescence
 
@@ -193,6 +193,16 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
+## How to Contribute
+
+[![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+
+Contributions are welcome! Whether you want to report bugs, suggest
+features, or improve the code or documentation, your input is highly
+valued. Please check the [issues
+tab](https://github.com/sustentarea/logonia/issues) for existing issues
+or to open a new one.
+
 ## License
 
 [![](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -242,7 +252,7 @@ dataset, a key source of historical climate data.
     </td>
     <td width="70%">
       <p>
-        This work was developed with support from the
+        This work was developed with support from the 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -263,10 +273,10 @@ dataset, a key source of historical climate data.
     </td>
     <td width="70%">
       <p>
-        This work was supported by the Department of Science and
-        Technology of the Secretariat of Science, Technology, and Innovation
-        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a>
-        of Brazil, and the National Council for Scientific and
+        This work was supported by the Department of Science and 
+        Technology of the Secretariat of Science, Technology, and Innovation 
+        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
+        of Brazil, and the National Council for Scientific and 
         Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
       </p>
     </td>

@@ -199,6 +199,24 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
+## How to Contribute
+
+```{r}
+#| echo: false
+#| output: asis
+
+cat(
+  badger::badge_custom(
+    x = "Contributor%20Covenant",
+    y = "2.1",
+    color = "4baaaa",
+    url = "CODE_OF_CONDUCT.md"
+  )
+)
+```
+
+Contributions are welcome! Whether you want to report bugs, suggest features, or improve the code or documentation, your input is highly valued. Please check the [issues tab](https://github.com/sustentarea/logonia/issues) for existing issues or to open a new one.
+
 ## License
 
 ```{r}

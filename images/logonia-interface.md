@@ -12,28 +12,13 @@ Interface snapshot settings.
 - Only vertical scrollbar
 - Command center: closed
 - No `nls` script visible
-- “View updates” checkbox checked
+- *View updates* enabled
 - Maintain default settings
 
 ## Window Size
 
-Install `wmctrl` to manage windows (if not already installed).
-
-For *Arch* Linux or *Manjaro*, install with:
-
-```bash
-sudo pacman -S wmctrl
-```
-
-List and identify the window to be included in the GIF with:
-
-```bash
-wmctrl -lG
-```
-
-Resize the window to `1440`x`726` pixels using with:
-
-> If there are two windows with the same name, use the `-i` option to specify the window ID.
+1. Install `wmctrl` to manage windows (if not already installed).
+2. Run:
 
 ```bash
 # gravity, x, y, width, and height
@@ -53,15 +38,8 @@ go
 
 ### Render
 
-Install `ImageMagick` (if not already installed) to convert the PNG files to a GIF.
-
-For *Arch* Linux or *Manjaro*, install with:
-
-```bash
-sudo pacman -S imagemagick
-```
-
-Use the following for the conversion:
+1. Install `ImageMagick` (if not already installed).
+2. Run:
 
 ```bash
 magick -delay 60 -loop 0 *.png output.gif
