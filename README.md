@@ -27,7 +27,7 @@ extension.
 
 > If you find this project useful, please consider giving it a star!
 > [![GitHub repo
-> stars](https://img.shields.io/github/stars/sustentarea/logonia)](https://github.com/sustentarea/Logônia/)
+> stars](https://img.shields.io/github/stars/sustentarea/logonia)](https://github.com/sustentarea/logonia/)
 
 <p align="center">
   <img src="images/logonia-interface.gif" />
@@ -51,7 +51,7 @@ probability, adding realism and complexity to the simulation.
 ### Climate Data
 
 The model uses *Historical Monthly Weather Data* from [WorldClim
-2.1](https://worldclim.org/) (1951–2024) ([Fick & Hijmans,
+2.1](https://worldclim.org/) ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)) for a region of the **Brazilian
 Amazon Forest**.
 
@@ -120,8 +120,8 @@ patches:
 
 - If an adult has at least `30` energy points, and a random number
   between `0` and `1` is *less than* or *equal to* the
-  `reproduction-rate`, a new seedling is created in a randomly selected
-  patch with `0` age and `1` point of energy.
+  `reproduction-rate` slider, a new seedling is created in a randomly
+  selected patch with `0` age and `1` point of energy.
 - If the selected patch is already occupied, the seedling dies
   immediately.
 
@@ -147,9 +147,9 @@ To get started, ensure you have [NetLogo](https://www.netlogo.org)
 installed. This model was developed with NetLogo 7.0.0. Use this version
 or newer for best compatibility.
 
-The model relies on the NetLogo extensions `LevelSpace`
-([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String`
-([`string`](https://github.com/NetLogo/String-Extension)). These
+The model relies on the NetLogo extensions
+[`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) and
+[`String`](https://github.com/NetLogo/String-Extension). These
 extensions are installed automatically when the model is run for the
 first time.
 

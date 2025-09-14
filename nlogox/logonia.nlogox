@@ -282,7 +282,7 @@ end
       <choice type="string" value="December"></choice>
     </chooser>
     <input x="10" multiline="false" y="120" height="60" variable="start-year" type="number" width="250">1951.0</input>
-    <slider x="10" step="1" y="185" max="100" width="250" display="initial-logonias" height="50" min="0" direction="Horizontal" default="30.0" variable="initial-logonias"></slider>
+    <slider x="10" step="1" y="185" max="100" width="250" display="initial-logonias" height="50" min="10" direction="Horizontal" default="30.0" variable="initial-logonias"></slider>
     <slider x="10" step="0.1" y="240" max="100" width="250" display="reproduction-rate" height="50" min="1" direction="Horizontal" default="20.0" variable="reproduction-rate" units="%"></slider>
     <slider x="10" step="0.1" y="295" max="5" width="250" display="energy-gain" height="50" min="1" direction="Horizontal" default="2.0" variable="energy-gain"></slider>
     <slider x="10" step="0.01" y="350" max="500" width="250" display="intercept" height="50" min="-500" direction="Horizontal" default="-222.5" variable="intercept"></slider>
@@ -524,7 +524,7 @@ Each simulation step represents *one month*. Over time, plants *grow*, *reproduc
 
 ### CLIMATE DATA
 
-The model uses *Historical Monthly Weather Data* from [WorldClim 2.1](https://worldclim.org/) (1951–2024) ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)) for a region of the **Brazilian Amazon Forest**.
+The model uses *Historical Monthly Weather Data* from [WorldClim 2.1](https://worldclim.org/) ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)) for a region of the **Brazilian Amazon Forest**.
 
 This dataset provides 12 monthly values per year for 1951–2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) ([Harris et al., 2020](https://doi.org/10.1038/s41597-020-0453-3)). The variables are: *Average Minimum Temperature (°C)* (**A**), *Average Maximum Temperature (°C)* (**B**), and *Total Precipitation (mm)* (**C**).
 
@@ -568,7 +568,7 @@ As an *adult*, the logônia gains the ability to reproduce.
 
 Adult plants can reproduce asexually by randomly colonizing unoccupied patches:
 
-- If an adult has at least `30` energy points, and a random number between `0` and `1` is *less than* or *equal to* the `reproduction-rate`, a new seedling is created in a randomly selected patch with `0` age and `1` point of energy.
+- If an adult has at least `30` energy points, and a random number between `0` and `1` is *less than* or *equal to* the `reproduction-rate` slider, a new seedling is created in a randomly selected patch with `0` age and `1` point of energy.
 - If the selected patch is already occupied, the seedling dies immediately.
 
 When a logônia occupy a patch, the patch color changes to brown to indicate it was once taken.
@@ -589,7 +589,7 @@ See a showcase of the model at the following link: https://youtu.be/kzfTuw9U-wI?
 
 `Logônia` was developed with [NetLogo](https://www.netlogo.org/) 7.0.0. Use this version or newer for best compatibility.
 
-The model depends on the `LevelSpace` ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) and `String` ([`string`](https://github.com/NetLogo/String-Extension)) extensions. These are installed automatically the first time the model runs.
+The model relies on the NetLogo extensions [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) and [`String`](https://github.com/NetLogo/String-Extension). These extensions are installed automatically when the model is run for the first time.
 
 Once everything is ready, click **`Setup`** and then **`Go`** to start. No extra installation steps are needed.
 
@@ -605,7 +605,7 @@ Once everything is ready, click **`Setup`** and then **`Go`** to start. No extra
 - **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
 - **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1951`).
 - **`initial-logonias`**: Slider for setting the initial number of logônia plants at the start of the simulation (default: `30`).
-- **`reproduction-rate`**: Slider for setting the reproduction rate of adult logônia plants, expressed as a percentage (default: `20%`).
+- **`reproduction-rate`**: Slider for setting the reproduction rate of adult logônia plants, expressed as a percentage (default: `20`).
 - **`energy-gain`**: Slider for setting the amount of energy an individual logônia plant gains when it successfully grows (default: `2`).
 - **`intercept`**: Slider for setting the intercept (β0) of the logistic regression model that determines the growth probability of logônia plants (default: `-222.5`).
 - **`beta-tmin`**: Slider for setting the coefficient (β1) for the *average minimum temperature* variable in the logistic regression model (default: `0.35`).
@@ -618,16 +618,16 @@ Once everything is ready, click **`Setup`** and then **`Go`** to start. No extra
 - **`Month`**, **`Year`**: Displays the current month and year being simulated.
 - **`Logônias`**: Plot showing the count of logônia plants in each growth phase over time, including 12-month moving averages. Black horizontal lines indicate the start of a 12-month cycle.
 - **`Seedling`**, **`Juvenile`**, and **`Adult`**: Monitors showing the current count of logônia plants in each growth phase.
-- **`Growth Probability Plot`**: Histogram showing the distribution of growth probabilities across all patches.
+- **`Growth Probability`**: Histogram showing the distribution of growth probabilities across all patches.
 - **`Mean G. P.`**: Monitor showing the mean growth probability across all patches.
 
 ## MODEL INSPECTION
 
-The model interface also includes tools for inspecting climate variables and the logistic regression model. These can be found in the lower sections of the interface.
+The model interface also includes tools for the inspecting climate variables and the logistic regression model. These can be found in the lower sections of the interface.
 
 ### CLIMATE VARIABLES
 
-This section lets you track climate variables during the simulation and map their spatial distribution.
+This section lets you track the climate variables during the simulation and map their spatial distribution.
 
 See a showcase of this feature at the following link: https://youtu.be/pz0UNH6t-kE?si=KbOdO-G73o_bqRp5
 
@@ -641,7 +641,7 @@ When visualizing the spatial distribution of each variable, the model represents
 
 - **`Show Values`**: When activated, displays patch values when hovering the mouse over them.
 
-##### CHOOSERS, INPUT BOXES, AND SLIDERS
+##### SWITCHERS
 
 - **`inspect-tmin`**: Switch for toggling the inspection of the *Average Minimum Temperature (°C)* variable on the world map.
 - **`inspect-tmax`**: Switch for toggling the inspection of the *Average Maximum Temperature (°C)* variable on the world map.
@@ -653,7 +653,7 @@ When visualizing the spatial distribution of each variable, the model represents
 - **`Global Mean tmax (°C)`**: Monitor showing the global mean of the *Average Maximum Temperature (°C)* variable across all patches.
 - **`Global Mean prec (mm)`**: Monitor showing the global mean of the *Total Precipitation (mm)* variable across all patches.
 - **`Average Temperature (°C)`**: Plot showing the global mean of the *Average Minimum Temperature (°C)* and *Average Maximum Temperature (°C)* variables over time, including 12-month moving averages. Black horizontal lines indicate the start of a 12-month cycle.
-- **`Total Precipitation (mm)`**: Plot showing the global mean of the *Total Precipitation (mm)* variable over time, including 12-month moving averages. Black horizontal lines indicate the start of a 12-month cycle.
+- **`Total Precipitation (mm)`**: Plot showing the global mean of the *Total Precipitation (mm)* variable over time, including a 12-month moving average. Black horizontal lines indicate the start of a 12-month cycle.
 
 ### LOGISTIC REGRESSION
 
@@ -667,7 +667,7 @@ See a showcase of this feature at the following link: https://youtu.be/AsN6Geu3F
 
 - **`Plot Sigmoid`**: When activated, generates a plot of the logistic regression curve based on the current parameters. Adjust sliders to see changes in real time.
 
-##### CHOOSERS, INPUT BOXES, AND SLIDERS
+##### CHOOSERS AND SLIDERS
 
 - **`x-axis`**: Chooser for selecting which variable to plot on the x-axis of the logistic regression curve. Options include `Intercept`, `Average Minimum Temperature (°C)`, `Average Maximum Temperature (°C)`, and `Total Precipitation (mm)` (default: `Intercept`).
 - **`min-x`**: Slider for setting the minimum value of the x-axis in the logistic regression plot (default: `-235.0`).
@@ -716,8 +716,8 @@ Contributions are welcome! Whether you want to report bugs, suggest features, or
 ## IMPORTANT LINKS
 
 - Logônia showcase playlist: https://smplu.link/logonia
-- OSF repository: https://doi.org/10.17605/OSF.IO/TPY7S
 - Code repository: https://github.com/sustentarea/logonia
+- OSF repository: https://doi.org/10.17605/OSF.IO/TPY7S
 - Latest release: https://github.com/sustentarea/logonia/releases/latest
 
 ## LICENSE
