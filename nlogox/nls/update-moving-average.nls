@@ -7,7 +7,7 @@ to update-moving-average
     set seedling-12 (list #seedling-count)
     set juvenile-12 (list #juvenile-count)
     set adult-12 (list #adult-count)
-  ] (index <= 11) [
+  ] ((length seedling-12) < 12) [
     set seedling-12 lput #seedling-count seedling-12
     set juvenile-12 lput #juvenile-count juvenile-12
     set adult-12 lput #adult-count adult-12

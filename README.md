@@ -69,9 +69,10 @@ Temperature (°C)* (**B**), and *Total Precipitation (mm)* (**C**).
   <img src="images/worldclim-animation.gif" height=150px />
 </p>
 
-The dataset can be reproduced using Quarto notebooks in the `qmd` folder
-of the model repository, adapted from those in the
-[`LogoClim`](https://github.com/sustentarea/logoclim) model.
+The dataset can be reproduced using [Quarto](https://quarto.org/)
+notebooks in the `qmd` folder of the model repository, adapted from
+those in the [`LogoClim`](https://github.com/sustentarea/logoclim)
+model.
 
 ### Energy and Growth Probability
 

@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {Logônia}: Plant Growth Response Model in NetLogo
 ;
-; Version: 2025-09-14 1.0.0.9000
+; Version: v1.0.0.9000 (2025-09-14)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -313,13 +313,13 @@ end
         <update>ifelse (inspection = true) [
   clear-plot
 ] [
-  ifelse ((start-month = month) or (index = 1)) [
+  ifelse ((start-month = month) and (not (index = 0))) [
     set-plot-pen-color black
   ] [
     set-plot-pen-color white
   ]
 
-  plot 1
+  plot 0.1
 ]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Seedling" color="-2754856" legend="true">
@@ -335,7 +335,7 @@ end
         <update><![CDATA[ifelse (inspection = true) [
   clear-plot
 ] [
-  ifelse (index >= 11) [
+  ifelse ((length seedling-12) >= 12) [
     set-plot-pen-color lime
     plot mean seedling-12
   ] [
@@ -357,7 +357,7 @@ end
         <update><![CDATA[ifelse (inspection = true) [
   clear-plot
 ] [
-  ifelse (index >= 11) [
+  ifelse ((length juvenile-12) >= 12) [
     set-plot-pen-color yellow - 2
     plot mean juvenile-12
   ] [
@@ -379,7 +379,7 @@ end
         <update><![CDATA[ifelse (inspection = true) [
   clear-plot
 ] [
-  ifelse (index >= 11) [
+  ifelse ((length adult-12) >= 12) [
     set-plot-pen-color brown
     plot mean adult-12
   ] [
@@ -410,18 +410,18 @@ end
     <switch x="345" y="675" height="60" on="false" variable="inspect-tmin" width="120" display="inspect-tmin"></switch>
     <switch x="470" y="675" height="60" on="false" variable="inspect-tmax" width="120" display="inspect-tmax"></switch>
     <switch x="595" y="675" height="60" on="false" variable="inspect-prec" width="115" display="inspect-prec"></switch>
-    <plot x="205" autoPlotX="true" yMax="40.0" autoPlotY="true" yAxis="Global Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="15.0" width="505" xAxis="Months" display="Average Temperature (°C)">
+    <plot x="205" autoPlotX="true" yMax="36.0" autoPlotY="true" yAxis="Global Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="18.0" width="505" xAxis="Months" display="Average Temperature (°C)">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month) or (index = 1)) [
+        <update>ifelse ((start-month = month) and (not (index = 0))) [
   set-plot-pen-color black
 ] [
   set-plot-pen-color white
 ]
 
-plot 16</update>
+plot 18.1</update>
       </pen>
       <pen interval="1.0" mode="0" display="Minimum" color="-2166824" legend="true">
         <setup></setup>
@@ -429,13 +429,15 @@ plot 16</update>
       </pen>
       <pen interval="1.0" mode="0" display="Min. 12MA" color="-13840069" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
+        <update>let #length length (first ([tmin-12] of patches with [not is-nan? tmin]))
+
+ifelse (#length = 12) [
   set-plot-pen-color lime
   plot mean [tmin-12ma] of patches with [not is-nan? tmin]
 ] [
   set-plot-pen-color lime + 4
   plot mean [tmin] of patches with [not is-nan? tmin]
-]]]></update>
+]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Maximum" color="-1318182" legend="true">
         <setup></setup>
@@ -443,13 +445,15 @@ plot 16</update>
       </pen>
       <pen interval="1.0" mode="0" display="Max. 12MA" color="-6459832" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
+        <update>let #length length (first ([tmax-12] of patches with [not is-nan? tmax]))
+
+ifelse (#length = 12) [
   set-plot-pen-color brown
   plot mean [tmax-12ma] of patches with [not is-nan? tmax]
 ] [
   set-plot-pen-color brown + 4
   plot mean [tmax] of patches with [not is-nan? tmax]
-]]]></update>
+]</update>
       </pen>
     </plot>
     <monitor x="715" precision="5" y="675" height="60" fontSize="11" width="165" display="Global Mean tmin (°C)">mean [tmin] of patches with [not is-nan? tmin]</monitor>
@@ -460,13 +464,13 @@ plot 16</update>
       <update>set-plot-x-range 0 max-plot-x</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month) or (index = 1)) [
+        <update>ifelse ((start-month = month) and (not (index = 0))) [
   set-plot-pen-color black
 ] [
   set-plot-pen-color white
 ]
 
-plot 1</update>
+plot 0.1</update>
       </pen>
       <pen interval="1.0" mode="0" display="Precipitation" color="-1513240" legend="true">
         <setup></setup>
@@ -474,13 +478,15 @@ plot 1</update>
       </pen>
       <pen interval="1.0" mode="0" display="Prec. 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
+        <update>let #length length (first ([prec-12] of patches with [not is-nan? prec]))
+
+ifelse (#length = 12) [
   set-plot-pen-color black
   plot mean [prec-12ma] of patches with [not is-nan? prec]
 ] [
   set-plot-pen-color gray + 4
   plot mean [prec] of patches with [not is-nan? prec]
-]]]></update>
+]</update>
       </pen>
     </plot>
     <note x="10" y="1000" backgroundDark="0" fontSize="15" width="1400" markdown="true" height="26" textColorDark="-1" textColorLight="-16777216" backgroundLight="0"><![CDATA[<div style="text-align: center;">Logistic Regression Inspection</div>]]></note>
@@ -532,7 +538,7 @@ This dataset provides 12 monthly values per year for 1951–2024, based on [down
   <img src="worldclim-animation" />
 </p>
 
-The dataset can be reproduced using Quarto notebooks in the `qmd` folder of the model repository, adapted from those in the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
+The dataset can be reproduced using [Quarto](https://quarto.org/) notebooks in the `qmd` folder of the model repository, adapted from those in the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
 
 ### ENERGY AND GROWTH PROBABILITY
 
@@ -616,7 +622,7 @@ Once everything is ready, click **`Setup`** and then **`Go`** to start. No extra
 
 - **`Data Series`**: Displays the climate data series from [WorldClim 2.1](https://worldclim.org/) being used in the simulation.
 - **`Month`**, **`Year`**: Displays the current month and year being simulated.
-- **`Logônias`**: Plot showing the count of logônia plants in each growth phase over time, including 12-month moving averages. Black horizontal lines indicate the start of a 12-month cycle.
+- **`Logônias`**: Plot showing the count of logônia plants in each growth phase over time, including 12-month moving averages (12MA). Black horizontal lines indicate the start of a 12-month cycle.
 - **`Seedling`**, **`Juvenile`**, and **`Adult`**: Monitors showing the current count of logônia plants in each growth phase.
 - **`Growth Probability`**: Histogram showing the distribution of growth probabilities across all patches.
 - **`Mean G. P.`**: Monitor showing the mean growth probability across all patches.
