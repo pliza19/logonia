@@ -1,5 +1,7 @@
 ## v1.1.0.9000 (Development Version)
 
+- Update to LogoCLim v2.1.0.9000.
+
 ## v1.1.0 (2025-09-16)
 
 - Updated *Juvenile* color in *Logônias* for better contrast.
