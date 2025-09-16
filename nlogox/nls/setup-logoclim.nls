@@ -8,7 +8,7 @@
 
 to setup-logoclim
   let #logoclim-path "../logoclim/nlogox/logoclim.nlogox"
-  let #data-path "../../data/"
+  let #data-path "../../data/" ; Relative to {LogoClim} `.nlogox` file.
   let #data-series "Historical Monthly Weather Data"
   let #data-resolution "10 Minutes (~340 km2 at the Equator)"
 

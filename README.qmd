@@ -20,7 +20,7 @@ cat(
   badger::badge_repostatus("active"),
   badger::badge_custom(
     x = "CoMSES Network",
-    y = "1.0.0",
+    y = "1.1.0",
     color = "1284C5",
     url = paste0(
       "https://www.comses.net/codebases/",
@@ -160,11 +160,13 @@ Plants age by `1` month per step. Age is shown by color, fading from lime to bro
 
 > See a showcase of the model at the following link: https://youtu.be/kzfTuw9U-wI?si=ztyGvA5_ztb5dew9
 
+### Setup
+
 To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed with NetLogo 7.0.0. Use this version or newer for best compatibility.
 
 The model relies on the NetLogo extensions [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) and [`String`](https://github.com/NetLogo/String-Extension). These extensions are installed automatically when the model is run for the first time.
 
-#### Downloading the Model
+### Downloading the Model
 
 You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logonia/releases/latest). For the development version, you can clone or download this GitHub repository directly.
 
@@ -173,7 +175,7 @@ You can download the latest release of the model from its [GitHub releases page]
 > Download all repository files, not only the `nlogox` folder.
 ```
 
-#### Running the Model
+### Running the Model
 
 Once everything is ready, open the `logonia.nlogox` file located in the `nlogox` folder, click **`Setup`** and then **`Go`** to start. No extra installation steps are needed.
 

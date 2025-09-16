@@ -6,7 +6,7 @@
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/CoMSES%20Network-1.0.0-1284C5.svg)](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/)
+[![](https://img.shields.io/badge/CoMSES%20Network-1.1.0-1284C5.svg)](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/TPY7S-1284C5.svg)](https://doi.org/10.17605/OSF.IO/TPY7S)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30113&i=32300&r=123)
@@ -144,6 +144,8 @@ months or run out of energy.
 > See a showcase of the model at the following link:
 > https://youtu.be/kzfTuw9U-wI?si=ztyGvA5_ztb5dew9
 
+### Setup
+
 To get started, ensure you have [NetLogo](https://www.netlogo.org)
 installed. This model was developed with NetLogo 7.0.0. Use this version
 or newer for best compatibility.
@@ -154,7 +156,7 @@ The model relies on the NetLogo extensions
 extensions are installed automatically when the model is run for the
 first time.
 
-#### Downloading the Model
+### Downloading the Model
 
 You can download the latest release of the model from its [GitHub
 releases page](https://github.com/sustentarea/logonia/releases/latest).
@@ -164,7 +166,7 @@ repository directly.
 > [!IMPORTANT]
 > Download all repository files, not only the `nlogox` folder.
 
-#### Running the Model
+### Running the Model
 
 Once everything is ready, open the `logonia.nlogox` file located in the
 `nlogox` folder, click **`Setup`** and then **`Go`** to start. No extra
