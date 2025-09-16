@@ -2,14 +2,14 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {Logônia}: Plant Growth Response Model in NetLogo
 ;
-; Version: v1.0.0.9000 (2025-09-14)
+; Version: v1.0.0.9000 (2025-09-16)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
 ; Repository: <https://github.com/sustentarea/logonia>
 ;
 ; Require: NetLogo >= 7.0.0
-; Required NetLogo extensions: `ls` & `string`
+; Required NetLogo extensions: `ls` and `string`
 ;
 ; Lines marked with `{LogoClim}` refer to code related to the {LogoClim} model.
 
@@ -19,17 +19,17 @@ __includes [
   "nls/plot-sigmoid.nls"
   "nls/random-between.nls"
   "nls/update-moving-average.nls"
+  "nls/check-false.nls" ; {LogoClim}
   "nls/check-inspection.nls" ; {LogoClim}
-  "nls/check-nan.nls" ; {LogoClim}
   "nls/check-start-year.nls" ; {LogoClim}
   "nls/combine.nls" ; {LogoClim}
-  "nls/inspect-climate-vars.nls" ; {LogoClim}
+  "nls/inspect-climate-variables.nls" ; {LogoClim}
   "nls/setup-logoclim.nls" ; {LogoClim}
   "nls/setup-patches.nls" ; {LogoClim}
   "nls/setup-variables.nls" ; {LogoClim}
   "nls/setup-world.nls" ; {LogoClim}
   "nls/show-values.nls" ; {LogoClim}
-  "nls/update-climate-vars.nls" ; {LogoClim}
+  "nls/update-climate-variables.nls" ; {LogoClim}
 ]
 
 extensions [
@@ -97,7 +97,7 @@ to setup
   setup-patches ; {LogoClim}
 
   ifelse (inspection = true) [ ; {LogoClim}
-    inspect-climate-vars
+    inspect-climate-variables
   ] [
     ask patches [
       set pcolor gray + 4
@@ -152,28 +152,29 @@ to setup
 end
 
 to go
-  if ((month = "December") and (year = 2024)) [ ; {LogoClim}
-      stop
+  if ( ; {LogoClim}
+    (month = "December") and (year = 2024) or
+    (
+      (inspection = true) and
+      ((not any-inspection?) or (test-inspection = false))
+    )
+  ) [
+    assert-inspection
+    stop
   ]
 
-  ls:ask ls:models [go true] ; {LogoClim}
+  ls:ask ls:models [go] ; {LogoClim}
 
   set index [index] ls:of tmin-ls-model ; {LogoClim}
   set month [month] ls:of tmin-ls-model ; {LogoClim}
   set year [year] ls:of tmin-ls-model ; {LogoClim}
 
-  update-climate-vars ; {LogoClim}
+  update-climate-variables ; {LogoClim}
 
   set max-plot-x ceiling ((ticks + 1) * 1.25)
 
   ifelse (inspection = true) [ ; {LogoClim}
-    if (not any-inspection?) or (test-inspection = false) [
-      assert-inspection
-
-      stop
-    ]
-
-    inspect-climate-vars
+    inspect-climate-variables
   ] [
     ask patches [
       set growth-probability compute-growth-probability self
@@ -261,10 +262,9 @@ to colorize
   ] [
     set color item 4 #colors
   ])
-end
-]]></code>
+end]]></code>
   <widgets>
-    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="552" showTickCounter="true" patchSize="12.27450980392157" fontSize="14" wrappingAllowedY="true" width="626" tickCounterLabel="Months" maxPycor="22" updateMode="0" maxPxcor="25" minPxcor="-25"></view>
+    <view x="270" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-22" height="552" showTickCounter="true" patchSize="12.274509803922157" fontSize="14" wrappingAllowedY="true" width="626" tickCounterLabel="Months" maxPycor="22" updateMode="0" maxPxcor="25" minPxcor="-25"></view>
     <button x="10" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
     <button x="140" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
     <chooser x="10" y="55" height="60" variable="start-month" current="0" width="250" display="start-month">
@@ -400,11 +400,11 @@ end
         <update>ifelse (inspection = true) [
   clear-plot
 ] [
-  histogram [growth-probability] of patches with [not is-nan? tmin]
+  histogram [growth-probability] of patches with [not is-false? tmin]
 ]</update>
       </pen>
     </plot>
-    <monitor x="1310" precision="5" y="445" height="120" fontSize="11" width="100" display="Mean G. P.">mean [growth-probability] of patches with [not is-nan? tmin]</monitor>
+    <monitor x="1310" precision="5" y="445" height="120" fontSize="11" width="100" display="Mean G. P.">mean [growth-probability] of patches with [not is-false? tmin]</monitor>
     <note x="10" y="640" backgroundDark="0" fontSize="15" width="1400" markdown="true" height="26" textColorDark="-1" textColorLight="-16777216" backgroundLight="0"><![CDATA[<div style="text-align: center;">Climate Variables Inspection</div>]]></note>
     <button x="205" y="675" height="60" disableUntilTicks="false" forever="true" kind="Observer" width="135" display="Show Values">show-values</button>
     <switch x="345" y="675" height="60" on="false" variable="inspect-tmin" width="120" display="inspect-tmin"></switch>
@@ -425,40 +425,40 @@ plot 18.1</update>
       </pen>
       <pen interval="1.0" mode="0" display="Minimum" color="-2166824" legend="true">
         <setup></setup>
-        <update>plot mean [tmin] of patches with [not is-nan? tmin]</update>
+        <update>plot mean [tmin] of patches with [not is-false? tmin]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Min. 12MA" color="-13840069" legend="true">
         <setup></setup>
-        <update>let #length length (first ([tmin-12] of patches with [not is-nan? tmin]))
+        <update>let #length length (first ([tmin-12] of patches with [not is-false? tmin]))
 
 ifelse (#length = 12) [
   set-plot-pen-color lime
-  plot mean [tmin-12ma] of patches with [not is-nan? tmin]
+  plot mean [tmin-12ma] of patches with [not is-false? tmin]
 ] [
   set-plot-pen-color lime + 4
-  plot mean [tmin] of patches with [not is-nan? tmin]
+  plot mean [tmin] of patches with [not is-false? tmin]
 ]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Maximum" color="-1318182" legend="true">
         <setup></setup>
-        <update>plot mean [tmax] of patches with [not is-nan? tmax]</update>
+        <update>plot mean [tmax] of patches with [not is-false? tmax]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Max. 12MA" color="-6459832" legend="true">
         <setup></setup>
-        <update>let #length length (first ([tmax-12] of patches with [not is-nan? tmax]))
+        <update>let #length length (first ([tmax-12] of patches with [not is-false? tmax]))
 
 ifelse (#length = 12) [
   set-plot-pen-color brown
-  plot mean [tmax-12ma] of patches with [not is-nan? tmax]
+  plot mean [tmax-12ma] of patches with [not is-false? tmax]
 ] [
   set-plot-pen-color brown + 4
-  plot mean [tmax] of patches with [not is-nan? tmax]
+  plot mean [tmax] of patches with [not is-false? tmax]
 ]</update>
       </pen>
     </plot>
-    <monitor x="715" precision="5" y="675" height="60" fontSize="11" width="165" display="Global Mean tmin (°C)">mean [tmin] of patches with [not is-nan? tmin]</monitor>
-    <monitor x="885" precision="5" y="675" height="60" fontSize="11" width="160" display="Global Mean tmax (°C)">mean [tmax] of patches with [not is-nan? tmax]</monitor>
-    <monitor x="1050" precision="5" y="675" height="60" fontSize="11" width="170" display="Global Mean prec (mm)">mean [prec] of patches with [not is-nan? prec]</monitor>
+    <monitor x="715" precision="5" y="675" height="60" fontSize="11" width="165" display="Global Mean tmin (°C)">mean [tmin] of patches with [not is-false? tmin]</monitor>
+    <monitor x="885" precision="5" y="675" height="60" fontSize="11" width="160" display="Global Mean tmax (°C)">mean [tmax] of patches with [not is-false? tmax]</monitor>
+    <monitor x="1050" precision="5" y="675" height="60" fontSize="11" width="170" display="Global Mean prec (mm)">mean [prec] of patches with [not is-false? prec]</monitor>
     <plot x="715" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Global Mean" y="740" xMin="0.0" height="240" legend="true" xMax="0.0" yMin="0.0" width="505" xAxis="Months" display="Total Precipitation (mm)">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x</update>
@@ -474,18 +474,18 @@ plot 0.1</update>
       </pen>
       <pen interval="1.0" mode="0" display="Precipitation" color="-1513240" legend="true">
         <setup></setup>
-        <update>plot mean [prec] of patches with [not is-nan? prec]</update>
+        <update>plot mean [prec] of patches with [not is-false? prec]</update>
       </pen>
       <pen interval="1.0" mode="0" display="Prec. 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update>let #length length (first ([prec-12] of patches with [not is-nan? prec]))
+        <update>let #length length (first ([prec-12] of patches with [not is-false? prec]))
 
 ifelse (#length = 12) [
   set-plot-pen-color black
-  plot mean [prec-12ma] of patches with [not is-nan? prec]
+  plot mean [prec-12ma] of patches with [not is-false? prec]
 ] [
   set-plot-pen-color gray + 4
-  plot mean [prec] of patches with [not is-nan? prec]
+  plot mean [prec] of patches with [not is-false? prec]
 ]</update>
       </pen>
     </plot>
@@ -499,6 +499,10 @@ ifelse (#length = 12) [
     </chooser>
     <slider x="205" step="1" y="1215" max="499" width="250" display="min-x" height="60" min="-500" direction="Horizontal" default="-235.0" variable="min-x"></slider>
     <slider x="205" step="1" y="1280" max="500" width="250" display="max-x" height="60" min="-499" direction="Horizontal" default="-200.0" variable="max-x"></slider>
+    <slider x="460" step="0.01" y="1035" max="500" width="185" display="intercept" height="60" min="-500" direction="Horizontal" default="-222.5" variable="intercept"></slider>
+    <slider x="650" step="0.01" y="1035" max="26" width="185" display="inspection-tmin" height="60" min="16" direction="Horizontal" default="22.32" variable="inspection-tmin"></slider>
+    <slider x="840" step="0.01" y="1035" max="37.25" width="185" display="inspection-tmax" height="60" min="27" direction="Horizontal" default="31.22" variable="inspection-tmax"></slider>
+    <slider x="1030" step="0.01" y="1035" max="1059.29" width="190" display="inspection-prec" height="60" min="2.89" direction="Horizontal" default="194.61" variable="inspection-prec"></slider>
     <plot x="460" autoPlotX="true" yMax="1.25" autoPlotY="false" yAxis="Probability" y="1100" xMin="0.0" height="240" legend="false" xMax="0.0" yMin="-0.25" width="760" xAxis="Variable (x-axis)" display="Sigmoid">
       <setup></setup>
       <update></update>
@@ -507,10 +511,6 @@ ifelse (#length = 12) [
         <update></update>
       </pen>
     </plot>
-    <slider x="460" step="0.01" y="1035" max="500" width="185" display="intercept" height="60" min="-500" direction="Horizontal" default="-222.5" variable="intercept"></slider>
-    <slider x="650" step="0.01" y="1035" max="26" width="185" display="inspection-tmin" height="60" min="16" direction="Horizontal" default="22.32" variable="inspection-tmin"></slider>
-    <slider x="840" step="0.01" y="1035" max="37.25" width="185" display="inspection-tmax" height="60" min="27" direction="Horizontal" default="31.22" variable="inspection-tmax"></slider>
-    <slider x="1030" step="0.01" y="1035" max="1059.29" width="190" display="inspection-prec" height="60" min="2.89" direction="Horizontal" default="194.61" variable="inspection-prec"></slider>
   </widgets>
   <info><![CDATA[# {LOGÔNIA}: PLANT GROWTH RESPONSE MODEL
 

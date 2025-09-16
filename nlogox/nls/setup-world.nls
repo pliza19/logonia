@@ -7,5 +7,6 @@ to setup-world
   let #max-height [max-pycor] ls:of tmin-ls-model
 
   resize-world #min-width #max-width #min-height #max-height
-  set-patch-size [patch-size] ls:of tmin-ls-model
+  ; set-patch-size [patch-size] ls:of tmin-ls-model
+  set-patch-size 12.274509803922157
 end

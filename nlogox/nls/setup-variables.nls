@@ -17,7 +17,6 @@ to setup-variables
   set patch-coordinates combine #range-pxcor #range-pycor
   set month [month] ls:of tmin-ls-model
   set year [year] ls:of tmin-ls-model
-
   set max-plot-x 2 ; When `index = 0`.
 
   ifelse (any-inspection? = true) [

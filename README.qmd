@@ -183,7 +183,7 @@ Refer to the `Info` tab in the model for additional details.
 
 To cite `Logônia` please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Plant growth response model in NetLogo* \[Computer software\]. <https://doi.org/10.17605/OSF.IO/TPY7S>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Plant growth response model in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/TPY7S
 
 A BibTeX entry for LaTeX users is:
 

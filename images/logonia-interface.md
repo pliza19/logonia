@@ -1,4 +1,4 @@
-# {Logônia}
+# Logônia
 
 Interface snapshot settings.
 

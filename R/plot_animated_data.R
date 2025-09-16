@@ -1,13 +1,9 @@
 library(here)
 source(here("R", "_setup.R"))
 
+# # Helpers -----
+#
 # plot_animated_data()
-
-# plot_animated_data(
-#   width = 640,
-#   height = 192,
-#   file = here("images", "worldclim-animation-info-tab.gif")
-# )
 
 library(checkmate)
 library(cli)

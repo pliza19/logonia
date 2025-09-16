@@ -1,4 +1,8 @@
-library(rutils) # github.com/sustentarea/rutils
+library(rutils) # github.com/danielvartan/rutils
+
+# # Helpers -----
+#
+# wc_license() |> cat()
 
 wc_license <- function() {
   paste0(

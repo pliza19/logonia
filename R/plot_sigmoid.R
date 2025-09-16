@@ -1,6 +1,8 @@
 library(here)
 source(here("R", "_setup.R"))
 
+# # Helpers -----
+#
 # plot_sigmoid()
 
 library(checkmate)

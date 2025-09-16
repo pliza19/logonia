@@ -1,10 +1,10 @@
 to-report logistic-regression [#tmin #tmax #prec]
   ifelse (
-    (is-nan? #tmin) or
-    (is-nan? #tmax) or
-    (is-nan? #prec)
+    (is-false? #tmin) or
+    (is-false? #tmax) or
+    (is-false? #prec)
   ) [
-    report "NA"
+    report false
   ] [
     let #linear-predictor (
       intercept +

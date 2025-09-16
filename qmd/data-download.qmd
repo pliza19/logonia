@@ -1,4 +1,4 @@
-# Logônia: Netlogia Brasiliensis Growth Response Model in NetLogo
+# Logônia
 
 ## Overview
 

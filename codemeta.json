@@ -1,9 +1,9 @@
 {
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
-  "identifier": "logonia",
+  "identifier": "{Logônia}",
   "dateCreated": "2025-09-02",
-  "applicationCategory": "Agent-Based Modeling",
+  "applicationCategory": "Computational Model",
   "applicationSubCategory": "Plant Growth Modeling",
   "name": "{Logônia}: Plant Growth Response Model in NetLogo",
   "author": [
