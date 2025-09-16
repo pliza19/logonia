@@ -1,4 +1,6 @@
-## v1.0.0.9000 (Development Version)
+## v1.1.0.9000 (Development Version)
+
+## v1.1.0 (2025-09-16)
 
 - Updated *Juvenile* color in *Logônias* for better contrast.
 - Modified climate variable inspection: the model now halts if a switch is toggled during the simulation.
