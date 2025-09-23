@@ -1,12 +1,12 @@
 meta:
   name:
-    short: "{Logônia}"
-    long: "{Logônia}: Plant Growth Response Model in NetLogo"
+    short: "Logônia"
+    long: "Logônia: Plant Growth Response Model in NetLogo"
   link:
     home: https://github.com/sustentarea/logonia
     github: https://github.com/sustentarea/logonia
   description: >-
-    {Logônia} is a NetLogo model that simulates the growth response of a
+    Logônia is a NetLogo model that simulates the growth response of a
     fictional plant, logônia, under different climatic conditions. The model
     uses climate data from WorldClim 2.1 and demonstrates how to integrate the
     {LogoClim} model through the {LevelSpace} extension.

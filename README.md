@@ -178,7 +178,7 @@ Refer to the `Info` tab in the model for additional details.
 
 To cite `Logônia` please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Plant
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant
 growth response model in NetLogo* \[Computer software\].
 https://doi.org/10.17605/OSF.IO/TPY7S
 
@@ -186,7 +186,7 @@ A BibTeX entry for LaTeX users is:
 
 ``` latex
 @Misc{vartanian2025,
-  title = {{Logônia}: Plant growth response model in NetLogo},
+  title = {Logônia: Plant growth response model in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/TPY7S},
@@ -211,7 +211,7 @@ or to open a new one.
 ``` text
 Copyright (C) 2025 Daniel Vartanian
 
-{Logônia} is free software: you can redistribute it and/or modify it under the
+Logônia is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.
@@ -253,7 +253,7 @@ dataset, a key source of historical climate data.
     </td>
     <td width="70%">
       <p>
-        This work was developed with support from the 
+        This work was developed with support from the
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -274,10 +274,10 @@ dataset, a key source of historical climate data.
     </td>
     <td width="70%">
       <p>
-        This work was supported by the Department of Science and 
-        Technology of the Secretariat of Science, Technology, and Innovation 
-        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
-        of Brazil, and the National Council for Scientific and 
+        This work was supported by the Department of Science and
+        Technology of the Secretariat of Science, Technology, and Innovation
+        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a>
+        of Brazil, and the National Council for Scientific and
         Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
       </p>
     </td>
