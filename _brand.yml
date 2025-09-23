@@ -9,7 +9,7 @@ meta:
     Logônia is a NetLogo model that simulates the growth response of a
     fictional plant, logônia, under different climatic conditions. The model
     uses climate data from WorldClim 2.1 and demonstrates how to integrate the
-    {LogoClim} model through the {LevelSpace} extension.
+    LogoClim model through the LevelSpace extension.
 
 logo:
   images:

@@ -11,7 +11,7 @@
 ; Require: NetLogo >= 7.0.0
 ; Required NetLogo extensions: `ls` and `string`
 ;
-; Lines marked with `{LogoClim}` refer to code related to the {LogoClim} model.
+; Lines marked with 'LogoClim' refer to code related to the LogoClim model.
 
 __includes [
   "nls/compute-growth-probability.nls"
@@ -19,17 +19,17 @@ __includes [
   "nls/plot-sigmoid.nls"
   "nls/random-between.nls"
   "nls/update-moving-average.nls"
-  "nls/check-false.nls" ; {LogoClim}
-  "nls/check-inspection.nls" ; {LogoClim}
-  "nls/check-start-year.nls" ; {LogoClim}
-  "nls/combine.nls" ; {LogoClim}
-  "nls/inspect-climate-variables.nls" ; {LogoClim}
-  "nls/setup-logoclim.nls" ; {LogoClim}
-  "nls/setup-patches.nls" ; {LogoClim}
-  "nls/setup-variables.nls" ; {LogoClim}
-  "nls/setup-world.nls" ; {LogoClim}
-  "nls/show-values.nls" ; {LogoClim}
-  "nls/update-climate-variables.nls" ; {LogoClim}
+  "nls/check-false.nls" ; LogoClim
+  "nls/check-inspection.nls" ; LogoClim
+  "nls/check-start-year.nls" ; LogoClim
+  "nls/combine.nls" ; LogoClim
+  "nls/inspect-climate-variables.nls" ; LogoClim
+  "nls/setup-logoclim.nls" ; LogoClim
+  "nls/setup-patches.nls" ; LogoClim
+  "nls/setup-variables.nls" ; LogoClim
+  "nls/setup-world.nls" ; LogoClim
+  "nls/show-values.nls" ; LogoClim
+  "nls/update-climate-variables.nls" ; LogoClim
 ]
 
 extensions [
@@ -42,32 +42,32 @@ globals [
   juvenile-12
   adult-12
   max-plot-x
-  index ; {LogoClim}
-  month ; {LogoClim}
-  year ; {LogoClim}
-  tmin-ls-model ; {LogoClim}
-  tmax-ls-model ; {LogoClim}
-  prec-ls-model ; {LogoClim}
-  patch-coordinates ; {LogoClim}
-  inspection ; {LogoClim}
-  settings ; {LogoClim}
+  index ; LogoClim
+  month ; LogoClim
+  year ; LogoClim
+  tmin-ls-model ; LogoClim
+  tmax-ls-model ; LogoClim
+  prec-ls-model ; LogoClim
+  patch-coordinates ; LogoClim
+  inspection ; LogoClim
+  settings ; LogoClim
 ]
 
 breed [logonias logonia]
 
 patches-own [
   growth-probability
-  tmin ; {LogoClim}
-  tmin-12 ; {LogoClim}
-  tmin-12ma ; {LogoClim}
-  tmax ; {LogoClim}
-  tmax-12 ; {LogoClim}
-  tmax-12ma ; {LogoClim}
-  prec ; {LogoClim}
-  prec-12 ; {LogoClim}
-  prec-12ma ; {LogoClim}
-  latitude ; {LogoClim}
-  longitude ; {LogoClim}
+  tmin ; LogoClim
+  tmin-12 ; LogoClim
+  tmin-12ma ; LogoClim
+  tmax ; LogoClim
+  tmax-12 ; LogoClim
+  tmax-12ma ; LogoClim
+  prec ; LogoClim
+  prec-12 ; LogoClim
+  prec-12ma ; LogoClim
+  latitude ; LogoClim
+  longitude ; LogoClim
 ]
 
 logonias-own [
@@ -79,24 +79,24 @@ logonias-own [
 to setup
   clear-all
 
-  assert-start-year ; {LogoClim}
-  assert-inspection ; {LogoClim}
+  assert-start-year ; LogoClim
+  assert-inspection ; LogoClim
 
-  if ( ; {LogoClim}
+  if ( ; LogoClim
     (test-start-year = false) or
     (test-inspection = false)
   ) [
     stop
   ]
 
-  ls:reset ; {LogoClim}
+  ls:reset ; LogoClim
 
-  setup-logoclim ; {LogoClim}
-  setup-world ; {LogoClim}
-  setup-variables ; {LogoClim}
-  setup-patches ; {LogoClim}
+  setup-logoclim ; LogoClim
+  setup-world ; LogoClim
+  setup-variables ; LogoClim
+  setup-patches ; LogoClim
 
-  ifelse (inspection = true) [ ; {LogoClim}
+  ifelse (inspection = true) [ ; LogoClim
     inspect-climate-variables
   ] [
     ask patches [
@@ -152,7 +152,7 @@ to setup
 end
 
 to go
-  if ( ; {LogoClim}
+  if ( ; LogoClim
     (month = "December") and (year = 2024) or
     (
       (inspection = true) and
@@ -163,17 +163,17 @@ to go
     stop
   ]
 
-  ls:ask ls:models [go] ; {LogoClim}
+  ls:ask ls:models [go] ; LogoClim
 
-  set index [index] ls:of tmin-ls-model ; {LogoClim}
-  set month [month] ls:of tmin-ls-model ; {LogoClim}
-  set year [year] ls:of tmin-ls-model ; {LogoClim}
+  set index [index] ls:of tmin-ls-model ; LogoClim
+  set month [month] ls:of tmin-ls-model ; LogoClim
+  set year [year] ls:of tmin-ls-model ; LogoClim
 
-  update-climate-variables ; {LogoClim}
+  update-climate-variables ; LogoClim
 
   set max-plot-x ceiling ((ticks + 1) * 1.25)
 
-  ifelse (inspection = true) [ ; {LogoClim}
+  ifelse (inspection = true) [ ; LogoClim
     inspect-climate-variables
   ] [
     ask patches [
@@ -766,7 +766,7 @@ Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution c
 
 Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. https://doi.org/10.1038/s41597-020-0453-3
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}: WorldClim in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/EAPZU]]></info>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/EAPZU]]></info>
   <turtleShapes>
     <shape name="default" rotatable="true" editableColorIndex="0">
       <polygon color="-1920102913" filled="true" marked="true">
